@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start \"C:\\\\Users\\\\miika.haavisto\\\\Dropbox\\\\Havenia\\\\Verkkosivut\\\\havenia.html\")"
+    ]
+  }
+}

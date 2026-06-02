@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Havenia — Redesigned Living</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F1EA;
+    --warm-white: #FAF8F4;
+    --stone: #C8BFB0;
+    --charcoal: #2C2A27;
+    --dark: #1A1916;
+    --mid: #6B6560;
+    --accent: #8B7355;
+    --line: rgba(44,42,39,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 60px;
+    mix-blend-mode: normal;
+    background: transparent;
+    transition: background 0.5s ease, padding 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(250,248,244,0.95);
+    backdrop-filter: blur(12px);
+    padding: 18px 60px;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo {
+    font-family: 'Cormorant', serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    text-decoration: none;
+    transition: color 0.4s;
+  }
+  nav.scrolled .nav-logo { color: var(--charcoal); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.75);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  nav.scrolled .nav-links a { color: var(--mid); }
+  .nav-links a:hover { color: var(--warm-white); }
+  nav.scrolled .nav-links a:hover { color: var(--charcoal); }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 60px 80px;
+    position: relative;
+    overflow: hidden;
+    background: var(--dark);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('hero.jpg');
+    background-size: cover;
+    background-position: center center;
+    z-index: 0;
+  }
+  .hero-texture {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(
+      to top,
+      rgba(26,25,22,0.85) 0%,
+      rgba(26,25,22,0.45) 40%,
+      rgba(26,25,22,0.15) 70%,
+      rgba(26,25,22,0.25) 100%
+    );
+  }
+  .hero-lines {
+    position: absolute; inset: 0; z-index: 1; overflow: hidden;
+  }
+  .hero-lines::before {
+    content: '';
+    position: absolute; top: 0; right: 180px;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(200,191,176,0.15) 30%, rgba(200,191,176,0.15) 70%, transparent);
+  }
+  .hero-lines::after {
+    content: '';
+    position: absolute; top: 0; right: 360px;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(200,191,176,0.07) 40%, rgba(200,191,176,0.07) 60%, transparent);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-label {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(62px, 8vw, 100px);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--cream);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.5s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--stone);
+  }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(200,191,176,0.85);
+    max-width: 480px;
+    margin-bottom: 52px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+  .hero-ctas {
+    display: flex; gap: 24px; align-items: center;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.0s forwards;
+  }
+  .btn-primary {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 18px 40px;
+    background: var(--accent);
+    color: var(--cream);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #7a6448; transform: translateY(-1px); }
+  .btn-ghost {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200,191,176,0.7);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,191,176,0.3);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .btn-ghost:hover { color: var(--stone); border-color: var(--stone); }
+  .hero-scroll {
+    position: absolute; bottom: 80px; right: 60px; z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.4s forwards;
+  }
+  .scroll-line {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--stone));
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  .scroll-text {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(200,191,176,0.4);
+    writing-mode: vertical-rl;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 120px 60px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(42px, 4.5vw, 62px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--dark);
+  }
+  h2 em { font-style: italic; }
+  p {
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--mid);
+  }
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 80px 0;
+  }
+
+  /* ── INTRO SECTION ── */
+  #intro { background: var(--warm-white); }
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+    margin-top: 60px;
+  }
+  .intro-promises {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .promise-item {
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+  }
+  .promise-item:last-child { border-bottom: 1px solid var(--line); }
+  .promise-num {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--stone);
+    margin-bottom: 12px;
+  }
+  .promise-title {
+    font-family: 'Cormorant', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .promise-text { font-size: 16px; line-height: 1.7; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--charcoal); }
+  #about h2, #about .section-label { color: var(--cream); }
+  #about .section-label { color: var(--stone); }
+  #about p { color: rgba(200,191,176,0.65); }
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .about-right { padding-top: 60px; }
+  .about-mission {
+    font-family: 'Cormorant', serif;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--cream);
+    font-style: italic;
+    border-left: 1px solid var(--accent);
+    padding-left: 32px;
+    margin: 40px 0;
+  }
+  .about-pillars {
+    display: flex; flex-direction: column; gap: 0;
+    margin-top: 48px;
+  }
+  .pillar {
+    padding: 20px 0;
+    border-top: 1px solid rgba(200,191,176,0.12);
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: rgba(200,191,176,0.65);
+    display: flex; align-items: center; gap: 16px;
+  }
+  .pillar:last-child { border-bottom: 1px solid rgba(200,191,176,0.12); }
+  .pillar-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+  }
+
+
+  /* ── PHILOSOPHY ── */
+  #philosophy { background: var(--cream); }
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    margin-top: 60px;
+    border: 1px solid var(--line);
+  }
+  .phil-item {
+    background: var(--cream);
+    padding: 52px 48px;
+    position: relative;
+  }
+  .phil-icon {
+    width: 32px; height: 1px;
+    background: var(--accent);
+    margin-bottom: 28px;
+  }
+  .phil-title {
+    font-family: 'Cormorant', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+  .phil-text { font-size: 16px; line-height: 1.8; }
+
+  /* ── KOHDE ── */
+  #kohde { background: var(--warm-white); }
+  .kohde-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+  .kohde-visual {
+    aspect-ratio: 4/5;
+    background: linear-gradient(
+      145deg,
+      #2c2824 0%,
+      #3a342c 40%,
+      #4a4038 70%,
+      #2c2824 100%
+    );
+    position: relative;
+    overflow: hidden;
+  }
+  .kohde-visual::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(139,115,85,0.2) 0%, transparent 60%);
+  }
+  .kohde-tag {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 40px;
+    background: linear-gradient(to top, rgba(26,25,22,0.8), transparent);
+    font-family: 'Cormorant', serif;
+    font-size: 18px;
+    color: var(--cream);
+    letter-spacing: 0.08em;
+  }
+  .kohde-info { padding: 20px 0; }
+  .kohde-status {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(139,115,85,0.35);
+    padding: 7px 16px;
+    margin-bottom: 36px;
+  }
+  .kohde-name {
+    font-family: 'Cormorant', serif;
+    font-size: 50px;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 24px;
+  }
+  .kohde-specs {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 40px 0;
+    border-top: 1px solid var(--line);
+  }
+  .spec-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+  .spec-label {
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--stone);
+    font-size: 12px;
+  }
+  .spec-val { color: var(--charcoal); }
+
+  /* ── JOURNAL ── */
+  #journal { background: var(--charcoal); }
+  #journal h2, #journal .section-label { color: var(--cream); }
+  #journal .section-label { color: var(--stone); }
+  .journal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+  }
+  .journal-card {
+    border-top: 1px solid rgba(200,191,176,0.15);
+    padding-top: 32px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  .journal-card:hover { opacity: 0.75; }
+  .journal-cat {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .journal-title {
+    font-family: 'Cormorant', serif;
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1.35;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+  .journal-text { font-size: 15px; color: rgba(200,191,176,0.55); line-height: 1.7; }
+  .journal-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200,191,176,0.4);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .journal-card:hover .journal-link {
+    color: var(--stone);
+    border-color: rgba(200,191,176,0.3);
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--dark); text-align: center; padding: 140px 60px; }
+  #contact .section-label { color: var(--stone); }
+  #contact h2 { color: var(--cream); max-width: 540px; margin: 0 auto 28px; }
+  #contact p { color: rgba(200,191,176,0.5); max-width: 420px; margin: 0 auto 56px; }
+  .contact-links {
+    display: flex; gap: 60px; justify-content: center; align-items: center;
+    margin-bottom: 24px;
+  }
+  .contact-link {
+    text-decoration: none;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(200,191,176,0.4);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .contact-link:hover { color: var(--stone); }
+  .contact-link span {
+    font-family: 'Cormorant', serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    color: var(--cream);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(200,191,176,0.08);
+    padding: 40px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant', serif;
+    font-size: 18px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(200,191,176,0.25);
+  }
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(200,191,176,0.2);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SISÄPIIRI ── */
+  #sisapiiri {
+    background: var(--dark);
+    padding: 140px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  #sisapiiri::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(139,115,85,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 60%, rgba(200,191,176,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .sisapiiri-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .sisapiiri-label {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .sisapiiri-title {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(44px, 5vw, 68px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 36px;
+  }
+  .sisapiiri-title em { font-style: italic; color: var(--stone); }
+  .sisapiiri-sub {
+    font-size: 17px;
+    line-height: 1.85;
+    color: rgba(200,191,176,0.6);
+    max-width: 580px;
+    margin: 0 auto 20px;
+  }
+  .sisapiiri-sub2 {
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: rgba(200,191,176,0.35);
+    margin-bottom: 56px;
+    font-style: italic;
+  }
+  .sisapiiri-form { margin-bottom: 72px; }
+  .form-row {
+    display: flex;
+    gap: 0;
+    max-width: 520px;
+    margin: 0 auto 16px;
+    border: 1px solid rgba(200,191,176,0.18);
+  }
+  .sisapiiri-input {
+    flex: 1;
+    padding: 20px 28px;
+    background: rgba(200,191,176,0.04);
+    border: none;
+    outline: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+  }
+  .sisapiiri-input::placeholder { color: rgba(200,191,176,0.3); }
+  .sisapiiri-input:focus { background: rgba(200,191,176,0.07); }
+  .sisapiiri-btn {
+    padding: 20px 36px;
+    background: var(--accent);
+    color: var(--cream);
+    border: none;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .sisapiiri-btn:hover { background: #7a6448; }
+  .sisapiiri-note {
+    font-size: 12px;
+    color: rgba(200,191,176,0.25);
+    letter-spacing: 0.03em;
+  }
+  .sisapiiri-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    border-top: 1px solid rgba(200,191,176,0.1);
+    padding-top: 56px;
+    text-align: left;
+  }
+  .sf-line {
+    width: 24px; height: 1px;
+    background: var(--accent);
+    margin-bottom: 20px;
+  }
+  .sf-title {
+    font-family: 'Cormorant', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  .sf-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(200,191,176,0.45);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50%       { opacity: 1;   transform: scaleY(1.1); }
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 22px 24px; }
+    nav.scrolled { padding: 14px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    #hero { padding: 0 24px 60px; }
+    .intro-grid, .about-layout, .kohde-layout, .philosophy-grid { grid-template-columns: 1fr; gap: 48px; }
+    .journal-grid { grid-template-columns: 1fr; }
+    .hero-scroll { display: none; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+    .contact-links { flex-direction: column; gap: 32px; }
+    #contact { padding: 100px 24px; }
+    #sisapiiri { padding: 100px 24px; }
+    .form-row { flex-direction: column; }
+    .sisapiiri-btn { width: 100%; }
+    .sisapiiri-features { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Havenia</a>
+  <ul class="nav-links">
+    <li><a href="#about">Havenia</a></li>
+    <li><a href="#philosophy">Filosofia</a></li>
+    <li><a href="#kohde">Kohteet</a></li>
+    <li><a href="#journal">Ajatuksia</a></li>
+    <li><a href="#contact">Yhteystiedot</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-lines"></div>
+
+  <div class="hero-content">
+    <div class="hero-label">Havenia — Ensimmäinen kohde tulossa</div>
+    <h1 class="hero-title">Redesigned<br><em>Living.</em></h1>
+    <p class="hero-sub">Havenia suunnittelee ja toteuttaa koteja, joissa arkkitehtuuri, materiaalit ja tilan tunnelma muodostavat harkitun kokonaisuuden.</p>
+    <div class="hero-ctas">
+      <a href="#kohde" class="btn-primary">Tutustu kohteeseen</a>
+      <a href="#contact" class="btn-ghost">Ota yhteyttä</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Vieritä</div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="section-inner">
+
+    <div class="reveal">
+      <div class="section-label">Lähtökohta</div>
+      <h2>Ei enemmän.<br><em>Paremmin.</em></h2>
+    </div>
+
+    <div class="intro-grid">
+      <div class="reveal">
+        <p>Havenia on uusi toimija, jonka lähtökohta ei ole rakentaa mahdollisimman paljon, vaan suunnitella parempia koteja.</p>
+        <br>
+        <p>Jokainen Havenia-kohde syntyy huolellisesta suunnittelusta, ajattomista materiaaleista ja ajatuksesta, että koti voi tuntua rauhallisemmalta, selkeämmältä ja toimivammalta.</p>
+      </div>
+
+      <div class="intro-promises reveal">
+        <div class="promise-item">
+          <div class="promise-num">01</div>
+          <div class="promise-title">Ajaton design</div>
+          <p class="promise-text">Tilat suunnitellaan kestämään aikaa ja käyttöä. Ei hetkellistä trendiä — tunnelma, joka säilyy.</p>
+        </div>
+        <div class="promise-item">
+          <div class="promise-num">02</div>
+          <div class="promise-title">Harkitut materiaalit</div>
+          <p class="promise-text">Laadukkaat, luonnolliset ja kestävät ratkaisut. Pinta, jota on miellyttävä koskettaa vuosikymmenten päästä.</p>
+        </div>
+        <div class="promise-item">
+          <div class="promise-num">03</div>
+          <div class="promise-title">Rauhallinen asumisen kokemus</div>
+          <p class="promise-text">Selkeä tilasuunnittelu ja harkittu kokonaisuus luovat kodin, jossa mieli lepää.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-layout">
+      <div>
+        <div class="reveal">
+          <div class="section-label">Havenia</div>
+          <h2>Syntyi<br><em>kysymyksestä.</em></h2>
+        </div>
+        <div class="reveal" style="margin-top:40px;">
+          <p>Havenia syntyi ajatuksesta, että asumista voidaan suunnitella paremmin.</p>
+          <br>
+          <p>Monet kodit rakennetaan kompromisseista: tontista, kustannuksista, aikatauluista. Havenian lähtökohta on päinvastainen. Jokainen tila suunnitellaan kokonaisuutena, jossa arkkitehtuuri, materiaalit ja tunnelma tukevat toisiaan.</p>
+        </div>
+
+      </div>
+
+      <div class="about-right">
+        <div class="reveal">
+          <p>Nykyisessä asuntotuotannossa tilasuunnittelu, materiaalit ja viimeistely jäävät usein toissijaisiksi. Havenia syntyi halusta tehdä asioita toisin.</p>
+        </div>
+
+        <div class="about-mission reveal">
+          Emme rakenna mahdollisimman paljon, vaan mahdollisimman hyvin.
+        </div>
+
+        <div class="about-pillars reveal">
+          <div class="pillar"><div class="pillar-dot"></div>Tilojen toimivuus</div>
+          <div class="pillar"><div class="pillar-dot"></div>Ajaton estetiikka</div>
+          <div class="pillar"><div class="pillar-dot"></div>Materiaalien laatu</div>
+          <div class="pillar"><div class="pillar-dot"></div>Kokonaisuuden harkittu suunnittelu</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Suunnittelufilosofia</div>
+      <h2>Miten<br><em>ajattelemme.</em></h2>
+    </div>
+
+    <div class="philosophy-grid reveal">
+      <div class="phil-item">
+        <div class="phil-icon"></div>
+        <div class="phil-title">Tilasuunnittelu</div>
+        <p class="phil-text">Tilat suunnitellaan niin, että liikkuminen on luontevaa ja arki toimii. Avoimuus, selkeät näkymälinjat ja toimiva mittakaava ovat elementtejä, joihin palataan yhä uudelleen.</p>
+      </div>
+      <div class="phil-item">
+        <div class="phil-icon"></div>
+        <div class="phil-title">Materiaalit</div>
+        <p class="phil-text">Havenia suosii ajattomia ja luonnollisia materiaaleja. Puu, kivi ja hillitty värimaailma luovat tiloja, jotka kestävät aikaa — ja joissa haluaa asua myös kymmenen vuoden kuluttua.</p>
+      </div>
+      <div class="phil-item">
+        <div class="phil-icon"></div>
+        <div class="phil-title">Värit ja tunnelma</div>
+        <p class="phil-text">Skandinaavinen rauhallisuus. Lämmin mutta hillitty sävymaailma, joka tukee luonnonvaloa ja tilan kokemusta. Väri ei huuda — se hengittää.</p>
+      </div>
+      <div class="phil-item">
+        <div class="phil-icon"></div>
+        <div class="phil-title">Yksityiskohdat</div>
+        <p class="phil-text">Laadukas koti syntyy yksityiskohdista. Kahvat, pinnat, liitokset ja mittasuhteet viimeistelevät kokonaisuuden. Ne ovat asioita, joita ei välttämättä huomaa — mutta joiden puuttumisen aistii heti.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KOHDE -->
+<section id="kohde">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Kohteet</div>
+      <h2>Ensimmäinen<br><em>Havenia.</em></h2>
+    </div>
+
+    <div class="kohde-layout">
+      <div class="kohde-visual reveal">
+        <div class="kohde-tag">Havenia Tampere — 2025</div>
+      </div>
+
+      <div class="kohde-info reveal">
+        <div class="kohde-status">Tulossa</div>
+        <div class="kohde-name">Havenia<br>Tampere</div>
+        <p>Ensimmäinen Havenia-kohde Tampereen keskustassa. Suunniteltu alusta loppuun yksilöllisesti — tilasuunnittelu, materiaalit ja kokonaisuus yhtenä harkittuna kokonaisuutena.</p>
+
+        <div class="kohde-specs">
+          <div class="spec-row">
+            <div class="spec-label">Sijainti</div>
+            <div class="spec-val">Tampere, keskusta</div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-label">Valmistuminen</div>
+            <div class="spec-val">2025</div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-label">Tyyppi</div>
+            <div class="spec-val">Asuinrakennus</div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-label">Saatavuus</div>
+            <div class="spec-val">Kysy lisää</div>
+          </div>
+        </div>
+
+        <a href="#contact" class="btn-primary">Kysy kohteesta</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNAL -->
+<section id="journal">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Ajatuksia asumisesta</div>
+      <h2>Kirjoituksia<br><em>tilasta ja ajasta.</em></h2>
+    </div>
+
+    <div class="journal-grid">
+      <div class="journal-card reveal">
+        <div class="journal-cat">Tilasuunnittelu</div>
+        <div class="journal-title">Miksi tilasuunnittelu ratkaisee asumisen laadun</div>
+        <p class="journal-text">Asuntoa ei koeta neliöinä vaan tilojen suhteina: miten valo liikkuu, miten tilat virtaavat toisiinsa, miten arki asettuu paikoilleen.</p>
+        <a href="#" class="journal-link">Lue lisää</a>
+      </div>
+      <div class="journal-card reveal">
+        <div class="journal-cat">Materiaalit</div>
+        <div class="journal-title">Luonnolliset materiaalit — miksi niiden aika ei ole ohi</div>
+        <p class="journal-text">Puu, kivi ja pelkistetty värimaailma eivät ole nostalgiaa. Ne ovat vastaus kulutuskulttuurin lyhytnäköisyydelle.</p>
+        <a href="#" class="journal-link">Lue lisää</a>
+      </div>
+      <div class="journal-card reveal">
+        <div class="journal-cat">Estetiikka</div>
+        <div class="journal-title">Ajaton värimaailma — mitä se oikeasti tarkoittaa</div>
+        <p class="journal-text">Ajattomuus ei tarkoita harmaata tai tylsää. Se tarkoittaa värejä, jotka eivät väsy — jotka antavat elämälle tilaa ilman, että huoneisto itse kilpailee huomiosta.</p>
+        <a href="#" class="journal-link">Lue lisää</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SISÄPIIRI -->
+<section id="sisapiiri">
+  <div class="sisapiiri-inner">
+    <div class="sisapiiri-label">Sisäpiiri</div>
+    <h2 class="sisapiiri-title">Jotkut saavat<br><em>tietää ensin.</em></h2>
+    <p class="sisapiiri-sub">Havenia-sisäpiiri on pieni joukko ihmisiä, jotka kuulevat uusista kohteista ennen muita. He saavat ensimmäisenä tiedon, ensimmäisenä kutsun tutustua — ja ensimmäisenä mahdollisuuden tehdä päätöksen rauhassa, ennen kuin kohde tulee julkiseen myyntiin.</p>
+    <p class="sisapiiri-sub2">Ei joukkoviestejä. Ei melua. Vain olennainen, oikeaan aikaan.</p>
+
+    <div class="sisapiiri-form">
+      <div class="form-row">
+        <input type="email" class="sisapiiri-input" placeholder="Sähköpostiosoitteesi" />
+        <button class="sisapiiri-btn">Liity sisäpiiriin</button>
+      </div>
+      <div class="sisapiiri-note">Voit poistua listalta milloin tahansa. Tietojasi ei luovuteta eteenpäin.</div>
+    </div>
+
+    <div class="sisapiiri-features">
+      <div class="sf-item">
+        <div class="sf-line"></div>
+        <div class="sf-title">Ennakkotieto</div>
+        <div class="sf-text">Kuulet uusista kohteista ennen julkista ilmoitusta.</div>
+      </div>
+      <div class="sf-item">
+        <div class="sf-line"></div>
+        <div class="sf-title">Yksityinen tutustuminen</div>
+        <div class="sf-text">Kutsu tutustua kohteeseen ennen virallista myyntiä.</div>
+      </div>
+      <div class="sf-item">
+        <div class="sf-line"></div>
+        <div class="sf-title">Etuoikeus ostaa</div>
+        <div class="sf-text">Mahdollisuus tehdä tarjous ennen kuin kohde avautuu kaikille.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label">Yhteystiedot</div>
+    <h2>Kiinnostuitko<br><em>Haveniasta?</em></h2>
+    <p>Jos etsit kotia tai haluat kuulla tulevista kohteista, ota yhteyttä. Vastaamme mielellämme.</p>
+
+    <div class="contact-links">
+      <a href="mailto:info@havenia.fi" class="contact-link">
+        Sähköposti
+        <span>info@havenia.fi</span>
+      </a>
+      <a href="tel:+358400000000" class="contact-link">
+        Puhelin
+        <span>+358 40 000 0000</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Havenia</div>
+  <div class="footer-copy">© 2025 Havenia. Kaikki oikeudet pidätetään.</div>
+</footer>
+
+<script>
+  // Nav scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+</script>
+
+</body>
+</html>
