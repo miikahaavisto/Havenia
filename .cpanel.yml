@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/haveniaf/public_html/
+    - /bin/cp havenia.html $DEPLOYPATH/index.html
