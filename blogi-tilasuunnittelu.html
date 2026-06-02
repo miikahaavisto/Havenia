@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miksi tilasuunnittelu ratkaisee asumisen laadun — Havenia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F5F1EA; --warm-white: #FAF8F4; --stone: #C8BFB0;
+    --charcoal: #2C2A27; --dark: #1A1916; --mid: #6B6560;
+    --accent: #8B7355; --line: rgba(44,42,39,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--warm-white); color: var(--charcoal); font-weight: 300; letter-spacing: 0.01em; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 60px;
+    background: rgba(250,248,244,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo { font-family: 'Cormorant', serif; font-size: 26px; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: var(--charcoal); text-decoration: none; }
+  .nav-back { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.3s; }
+  .nav-back:hover { color: var(--charcoal); }
+
+  .article-hero {
+    padding: 160px 60px 80px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .article-cat {
+    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 24px;
+  }
+  .article-title {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 300; line-height: 1.1;
+    color: var(--dark); margin-bottom: 32px;
+  }
+  .article-title em { font-style: italic; }
+  .article-meta {
+    font-size: 14px; color: var(--stone); letter-spacing: 0.05em;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .article-body {
+    max-width: 800px; margin: 0 auto;
+    padding: 60px 60px 120px;
+  }
+  .article-body p {
+    font-size: 18px; line-height: 1.9; color: var(--mid);
+    margin-bottom: 32px;
+  }
+  .article-body h3 {
+    font-family: 'Cormorant', serif;
+    font-size: 32px; font-weight: 400;
+    color: var(--dark); margin: 48px 0 20px;
+    font-style: italic;
+  }
+  .article-body blockquote {
+    border-left: 1px solid var(--accent);
+    padding-left: 32px;
+    margin: 48px 0;
+    font-family: 'Cormorant', serif;
+    font-size: 26px; font-weight: 300;
+    line-height: 1.6; color: var(--charcoal);
+    font-style: italic;
+  }
+
+  .author-block {
+    max-width: 800px; margin: 0 auto;
+    padding: 60px;
+    border-top: 1px solid var(--line);
+    display: flex; gap: 40px; align-items: flex-start;
+  }
+  .author-img {
+    width: 80px; height: 80px; border-radius: 50%;
+    object-fit: cover; flex-shrink: 0;
+  }
+  .author-name { font-family: 'Cormorant', serif; font-size: 22px; font-weight: 400; color: var(--dark); margin-bottom: 8px; }
+  .author-bio { font-size: 15px; line-height: 1.7; color: var(--mid); }
+
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(200,191,176,0.08);
+    padding: 40px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo { font-family: 'Cormorant', serif; font-size: 18px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(200,191,176,0.25); }
+  .footer-copy { font-size: 13px; color: rgba(200,191,176,0.2); letter-spacing: 0.05em; }
+
+  @media (max-width: 768px) {
+    nav { padding: 22px 24px; }
+    .article-hero, .article-body, .author-block { padding-left: 24px; padding-right: 24px; }
+    .author-block { flex-direction: column; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Havenia</a>
+  <a href="index.html#journal" class="nav-back">← Takaisin</a>
+</nav>
+
+<div class="article-hero">
+  <div class="article-cat">Tilasuunnittelu</div>
+  <h1 class="article-title">Miksi tilasuunnittelu<br><em>ratkaisee asumisen laadun</em></h1>
+  <div class="article-meta">Maikki Hevari &nbsp;·&nbsp; Havenia Journal</div>
+</div>
+
+<div class="article-body">
+  <p>Asuntoa ei koeta neliöinä vaan tilojen suhteina: miten valo liikkuu, miten tilat virtaavat toisiinsa, miten arki asettuu paikoilleen. Tämä on tilasuunnittelun ydin — ja juuri siksi se ratkaisee asumisen laadun enemmän kuin mikään muu yksittäinen tekijä.</p>
+
+  <p>Olemme tottuneet arvioimaan asuntoja pinta-alan mukaan. 80 neliötä kuulostaa isommalta kuin 65 neliötä. Mutta asumisen kokemus ei synny numeroista. Se syntyy siitä, miten tilat on järjestetty suhteessa toisiinsa, miten luonnonvalo kulkee huoneesta toiseen, ja miten arjen rytmi löytää paikkansa kodin rakenteesta.</p>
+
+  <blockquote>Hyvin suunniteltu tila tuntuu suuremmalta kuin se on. Huonosti suunniteltu tila tuntuu pienemmältä kuin se on.</blockquote>
+
+  <h3>Liikkuminen on asumisen selkäranka</h3>
+  <p>Ensimmäinen asia, jonka hyvä tilasuunnittelija kysyy, ei ole "miltä tämä näyttää" vaan "miten tässä liikutaan". Kulkureitit, siirtymät tilojen välillä ja se, miten keittiö, olohuone ja makuuhuone asettuvat suhteessa toisiinsa — nämä määrittävät, tuntuuko koti luontevalta vai jatkuvasti hieman hankalalta.</p>
+
+  <p>Haveniassa jokaisen kohteen tilasuunnittelu alkaa arjen kartoituksesta. Miten aamut sujuvat? Missä lapset tekevät läksynsä? Tarvitaanko rauhallinen tila etätöille? Vastaukset ohjaavat suunnittelua enemmän kuin mikään trendijulkaisu.</p>
+
+  <h3>Valo on ilmainen suunnittelutyökalu</h3>
+  <p>Luonnonvalo on asumisen laadussa aliarvostettu tekijä. Ikkunoiden sijoittelu, huoneiden orientaatio ilmansuuntiin nähden ja se, miten valo liikkuu tilassa päivän mittaan — kaikki tämä vaikuttaa syvällisesti siihen, miltä kodissa tuntuu asua.</p>
+
+  <p>Pohjoiseen avautuva olohuone voi tuntua synkältä ja kylmältä. Etelään avautuva makuuhuone kuumentuu kesäisin siedettömäksi. Tilasuunnittelussa valon kulku on otettava huomioon jo ennen kuin yhtään seinää piirretään.</p>
+
+  <h3>Mittakaava ratkaisee tunnelman</h3>
+  <p>Korkeat katot tekevät tilasta juhlavan. Matalat katot luovat intiimiyden tunnun. Leveä eteinen viestii avaruudesta. Kapea käytävä tuntuu ahtaalta riippumatta siitä, kuinka kauniit tapetit siinä on.</p>
+
+  <p>Haveniassa mittakaavaan kiinnitetään erityistä huomiota. Emme suunnittele tiloja pelkästään pohjapiirrosten perusteella — käymme fyysisesti paikan päällä aistimassa, miltä tila tuntuu kehossa ennen kuin teemme lopulliset päätökset.</p>
+
+  <p>Lopulta tilasuunnittelu on empatiaa. Se on kykyä kuvitella, miltä jokin tila tuntuu elää — ei vain katsoa. Ja se taito on se, jonka haluamme tuoda jokaiseen Havenia-kotiin.</p>
+</div>
+
+<div class="author-block">
+  <img src="https://images.squarespace-cdn.com/content/v1/650c90eae9cfd632e82ed9fc/98834859-288a-40ed-a0a2-07dd4bce3adc/IMG_8124.JPG" alt="Maikki Hevari" class="author-img">
+  <div>
+    <div class="author-name">Maikki Hevari</div>
+    <p class="author-bio">Sisustussuunnittelija, kauppatieteiden maisteri ja rakentaja — Maikki suunnittelee koteja, joissa materiaalit, mittakaava ja tunnelma muodostavat harkitun kokonaisuuden. Hän toimii Havenian sisustussuunnittelusta vastaavana asiantuntijana.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Havenia</div>
+  <div class="footer-copy">© 2026 Havenia. Kaikki oikeudet pidätetään.</div>
+</footer>
+
+</body>
+</html>
