@@ -936,10 +936,75 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Havenia</div>
-  <div class="footer-copy">© 2026 Havenia. Kaikki oikeudet pidätetään.</div>
+  <div class="footer-copy" id="footer-copy-link" style="cursor:pointer;" onclick="toggleLoginBox()">© 2026 Havenia. Kaikki oikeudet pidätetään.</div>
 </footer>
 
+<!-- SPLASH -->
+<div id="splash" style="display:none; position:fixed; inset:0; z-index:9999; background:var(--dark); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:40px;">
+  <div style="font-family:'Cormorant',serif; font-size:clamp(42px,6vw,80px); font-weight:300; color:var(--cream); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:32px;">Havenia</div>
+  <div style="font-family:'Cormorant',serif; font-size:clamp(22px,3vw,36px); font-weight:300; font-style:italic; color:var(--stone); margin-bottom:48px;">Pian saatavilla.</div>
+  <div style="font-size:14px; letter-spacing:0.1em; color:rgba(200,191,176,0.4); max-width:400px; line-height:1.8;">Rakennamme jotain erityistä. Liity sisäpiiriin ja kuule ensimmäisenä, kun olemme valmiit.</div>
+  <div style="margin-top:48px; display:flex; gap:0; border:1px solid rgba(200,191,176,0.18); max-width:420px; width:100%;">
+    <input type="email" id="splash-email" placeholder="Sähköpostiosoitteesi" style="flex:1; padding:18px 24px; background:rgba(200,191,176,0.04); border:none; outline:none; font-family:'Jost',sans-serif; font-size:14px; font-weight:300; color:var(--cream); letter-spacing:0.02em;">
+    <button onclick="splashLiity()" style="padding:18px 28px; background:var(--accent); color:var(--cream); border:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; white-space:nowrap;">Liity</button>
+  </div>
+  <div id="splash-kiitos" style="display:none; margin-top:24px; font-size:14px; color:rgba(200,191,176,0.5); font-style:italic;">Kiitos — palaamme pian.</div>
+  <div style="position:absolute; bottom:32px; font-size:12px; color:rgba(200,191,176,0.15); letter-spacing:0.05em; cursor:pointer;" onclick="toggleLoginBox()">© 2026 Havenia</div>
+</div>
+
+<!-- LOGIN BOX -->
+<div id="login-box" style="display:none; position:fixed; bottom:80px; left:50%; transform:translateX(-50%); z-index:10000; background:var(--dark); border:1px solid rgba(200,191,176,0.15); padding:32px 40px; text-align:center; min-width:300px;">
+  <div style="font-family:'Cormorant',serif; font-size:20px; color:var(--cream); margin-bottom:20px; letter-spacing:0.05em;">Sisäänkirjautuminen</div>
+  <div style="display:flex; gap:0; border:1px solid rgba(200,191,176,0.18);">
+    <input type="password" id="login-password" placeholder="Salasana" onkeydown="if(event.key==='Enter')tarkistaSalasana()" style="flex:1; padding:14px 20px; background:rgba(200,191,176,0.04); border:none; outline:none; font-family:'Jost',sans-serif; font-size:14px; color:var(--cream);">
+    <button onclick="tarkistaSalasana()" style="padding:14px 24px; background:var(--accent); color:var(--cream); border:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:12px; letter-spacing:0.15em; text-transform:uppercase;">OK</button>
+  </div>
+  <div id="login-error" style="display:none; margin-top:12px; font-size:13px; color:rgba(200,191,176,0.4);">Väärä salasana.</div>
+</div>
+
 <script>
+  // Splash / auth
+  const SALASANA = 'havenia2026';
+  const splash = document.getElementById('splash');
+  const loginBox = document.getElementById('login-box');
+
+  function naytaSplash() {
+    splash.style.display = 'flex';
+  }
+  function piilotaSplash() {
+    splash.style.display = 'none';
+  }
+  function toggleLoginBox() {
+    loginBox.style.display = loginBox.style.display === 'none' ? 'block' : 'none';
+    if (loginBox.style.display === 'block') {
+      setTimeout(() => document.getElementById('login-password').focus(), 50);
+    }
+  }
+  function tarkistaSalasana() {
+    const pw = document.getElementById('login-password').value;
+    if (pw === SALASANA) {
+      localStorage.setItem('havenia_auth', '1');
+      piilotaSplash();
+      loginBox.style.display = 'none';
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  }
+  function splashLiity() {
+    const email = document.getElementById('splash-email').value.trim();
+    if (!email || !email.includes('@')) return;
+    const data = new FormData();
+    data.append('email', email);
+    fetch('sisapiiri.php', { method: 'POST', body: data }).catch(() => {});
+    document.getElementById('splash-email').style.display = 'none';
+    document.getElementById('splash-kiitos').style.display = 'block';
+  }
+
+  // Tarkista auth sivun latautuessa
+  if (!localStorage.getItem('havenia_auth')) {
+    naytaSplash();
+  }
+
   // Nav scroll
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
