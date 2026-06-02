@@ -815,7 +815,7 @@
       <div class="kohde-info reveal">
         <div class="kohde-status">Tulossa myyntiin</div>
         <div class="kohde-name">Havenia<br>Tuulensuu</div>
-        <p>Täysin uudelleen remontoitu kohde arvostettua Tuulensuuta — 6. kerroksessa. Tilasuunnittelu, materiaalit ja kokonaisuus harkittu alusta loppuun.</p>
+        <p>Täysin uudelleen remontoitu kohde arvostettussa Tuulensuun talossa ja 6. kerroksessa. Tilasuunnittelu, materiaalit ja kokonaisuus harkittu alusta loppuun.</p>
 
         <div class="kohde-specs">
           <div class="spec-row">
@@ -881,12 +881,16 @@
     <p class="sisapiiri-sub">Havenia-sisäpiiri on pieni joukko ihmisiä, jotka kuulevat uusista kohteista ennen muita. He saavat ensimmäisenä tiedon, ensimmäisenä kutsun tutustua — ja ensimmäisenä mahdollisuuden tehdä päätöksen rauhassa, ennen kuin kohde tulee julkiseen myyntiin.</p>
     <p class="sisapiiri-sub2">Ei joukkoviestejä. Ei melua. Vain olennainen, oikeaan aikaan.</p>
 
-    <div class="sisapiiri-form">
+    <div class="sisapiiri-form" id="sisapiiri-form">
       <div class="form-row">
-        <input type="email" class="sisapiiri-input" placeholder="Sähköpostiosoitteesi" />
-        <button class="sisapiiri-btn">Liity sisäpiiriin</button>
+        <input type="email" class="sisapiiri-input" id="sisapiiri-email" placeholder="Sähköpostiosoitteesi" />
+        <button class="sisapiiri-btn" onclick="liitySisapiiriin()">Liity sisäpiiriin</button>
       </div>
       <div class="sisapiiri-note">Voit poistua listalta milloin tahansa. Tietojasi ei luovuteta eteenpäin.</div>
+    </div>
+    <div id="sisapiiri-kiitos" style="display:none; text-align:center; padding: 40px 0;">
+      <div style="font-family:'Cormorant',serif; font-size:28px; color:var(--cream); margin-bottom:16px;">Kiitos liittymisestä.</div>
+      <div style="font-size:16px; color:rgba(200,191,176,0.6); line-height:1.8;">Palaamme sinulle, kun meillä on sisäpiirille tiedotettavaa.</div>
     </div>
 
     <div class="sisapiiri-features">
@@ -932,7 +936,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Havenia</div>
-  <div class="footer-copy">© 2025 Havenia. Kaikki oikeudet pidätetään.</div>
+  <div class="footer-copy">© 2026 Havenia. Kaikki oikeudet pidätetään.</div>
 </footer>
 
 <script>
@@ -941,6 +945,15 @@
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 60);
   });
+
+  // Sisäpiiri-lomake
+  function liitySisapiiriin() {
+    const email = document.getElementById('sisapiiri-email').value.trim();
+    if (!email) { alert('Syötä sähköpostiosoitteesi.'); return; }
+    window.location.href = 'mailto:info@havenia.fi?subject=Liityn%20Havenia%20sis%C3%A4piiriin&body=S%C3%A4hk%C3%B6postiosoitteeni%3A%20' + encodeURIComponent(email);
+    document.getElementById('sisapiiri-form').style.display = 'none';
+    document.getElementById('sisapiiri-kiitos').style.display = 'block';
+  }
 </script>
 
 </body>
