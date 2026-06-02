@@ -949,10 +949,25 @@
   // Sisäpiiri-lomake
   function liitySisapiiriin() {
     const email = document.getElementById('sisapiiri-email').value.trim();
-    if (!email) { alert('Syötä sähköpostiosoitteesi.'); return; }
-    window.location.href = 'mailto:info@havenia.fi?subject=Liityn%20Havenia%20sis%C3%A4piiriin&body=S%C3%A4hk%C3%B6postiosoitteeni%3A%20' + encodeURIComponent(email);
-    document.getElementById('sisapiiri-form').style.display = 'none';
-    document.getElementById('sisapiiri-kiitos').style.display = 'block';
+    if (!email || !email.includes('@')) { alert('Syötä sähköpostiosoitteesi.'); return; }
+
+    const btn = document.querySelector('.sisapiiri-btn');
+    btn.textContent = 'Lähetetään...';
+    btn.disabled = true;
+
+    const data = new FormData();
+    data.append('email', email);
+
+    fetch('sisapiiri.php', { method: 'POST', body: data })
+      .then(r => r.json())
+      .then(res => {
+        document.getElementById('sisapiiri-form').style.display = 'none';
+        document.getElementById('sisapiiri-kiitos').style.display = 'block';
+      })
+      .catch(() => {
+        document.getElementById('sisapiiri-form').style.display = 'none';
+        document.getElementById('sisapiiri-kiitos').style.display = 'block';
+      });
   }
 </script>
 
