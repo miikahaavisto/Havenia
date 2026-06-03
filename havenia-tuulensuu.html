@@ -156,6 +156,72 @@
     font-style: italic;
   }
 
+  /* UUDISTAMISEN TARINA */
+  .uudistus-section {
+    background: var(--dark);
+    padding: 120px 60px;
+  }
+  .uudistus-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .uudistus-section .section-label { color: var(--stone); }
+  .uudistus-title {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(40px, 4.5vw, 60px);
+    font-weight: 300; line-height: 1.15;
+    color: var(--cream); margin-bottom: 52px;
+  }
+  .uudistus-title em { font-style: italic; color: var(--stone); }
+  .uudistus-teksti p {
+    font-size: 18px; line-height: 1.95;
+    color: rgba(200,191,176,0.7); margin-bottom: 28px;
+  }
+  .uudistus-quote {
+    border-left: 1px solid var(--accent);
+    padding-left: 36px;
+    margin: 56px 0;
+    font-family: 'Cormorant', serif;
+    font-size: 28px; font-weight: 300;
+    line-height: 1.6; color: var(--cream);
+    font-style: italic;
+  }
+
+  /* SISÄPIIRI CTA */
+  .sisapiiri-cta {
+    background: var(--charcoal);
+    padding: 80px 60px;
+    text-align: center;
+  }
+  .sisapiiri-cta-inner {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .sisapiiri-cta-label {
+    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 20px;
+  }
+  .sisapiiri-cta-title {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 300; line-height: 1.2;
+    color: var(--cream); margin-bottom: 20px;
+  }
+  .sisapiiri-cta-title em { font-style: italic; color: var(--stone); }
+  .sisapiiri-cta-sub {
+    font-size: 16px; line-height: 1.8;
+    color: rgba(200,191,176,0.5); margin-bottom: 40px;
+  }
+  .sisapiiri-cta-btn {
+    display: inline-block;
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    padding: 18px 44px;
+    background: var(--accent); color: var(--cream);
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .sisapiiri-cta-btn:hover { background: #7a6448; }
+
   /* REMONTTI-GRID */
   .remontti-section {
     background: var(--charcoal);
@@ -373,6 +439,8 @@
     nav { padding: 20px 24px; }
     .kohde-hero { padding: 0 24px 60px; }
     .tarina-section { padding: 80px 24px; }
+    .uudistus-section { padding: 80px 24px; }
+    .sisapiiri-cta { padding: 60px 24px; }
     .remontti-section { padding: 80px 24px; }
     .remontti-grid { grid-template-columns: 1fr; }
     .tiedot-section { padding: 80px 24px; }
@@ -443,19 +511,20 @@
   </div>
 </section>
 
-<!-- TARINA 2 -->
-<section class="tarina-section" style="background:var(--charcoal); padding-top:0;">
-  <div class="section-label" style="color:var(--stone);">Uudistamisen tarina</div>
-  <h2 class="tarina-title" style="color:var(--cream);">Tuulensuu ei ollut valmis.<br><em style="color:var(--stone);">Se oli mahdollisuus.</em></h2>
-  <div class="tarina-teksti">
-    <p style="color:rgba(200,191,176,0.7);">Kun asunto vaihtoi omistajaa, sen viimeisin remontti oli tehty 1990-luvun alussa. Pinnat olivat aikansa eläneet, pohjaratkaisu ei vastannut nykypäivän asumista, ja tilan todellinen potentiaali oli jäänyt piiloon vuosikymmenien alle.</p>
-    <p style="color:rgba(200,191,176,0.7);">Päätös oli selvä: tehdään se kunnolla tai ei ollenkaan.</p>
+<!-- UUDISTAMISEN TARINA -->
+<section class="uudistus-section">
+  <div class="uudistus-inner">
+    <div class="section-label">Uudistamisen tarina</div>
+    <h2 class="uudistus-title">Tuulensuu ei ollut valmis.<br><em>Se oli mahdollisuus.</em></h2>
+    <div class="uudistus-teksti">
+      <p>Kun asunto vaihtoi omistajaa, sen viimeisin remontti oli tehty 1990-luvun alussa. Pinnat olivat aikansa eläneet, pohjaratkaisu ei vastannut nykypäivän asumista, ja tilan todellinen potentiaali oli jäänyt piiloon vuosikymmenien alle.</p>
 
-    <blockquote style="color:var(--cream);">Tehdään se kunnolla tai ei ollenkaan.</blockquote>
+      <div class="uudistus-quote">Tehdään se kunnolla tai ei ollenkaan.</div>
 
-    <p style="color:rgba(200,191,176,0.7);">Asunto purettiin käytännössä raakatilaksi. Kaikki pinnat, sähköt ja vedot uusittiin. Pohjaratkaisu suunniteltiin alusta — 105 neliömetriä jaettiin uudelleen niin, että tila palvelee arjen eri rytmejä: makuuhuone, keittiö, olohuone, erillinen työhuone, kodinhoitohuone, sauna ja kaksi wc:tä. Tilaa on, mutta ei turhaa.</p>
-    <p style="color:rgba(200,191,176,0.7);">Samalla tehtiin se, mikä oli välttämätöntä: rakennuksen oma luonne säilytettiin. Alkuperäinen tammiparketti kunnostettiin. Korkeat katot stukkeineen pidettiin koskemattomina. Vanhat ikkunapuitteet jäivät paikalleen. Olohuoneen komeat pylväät — osa talon alkuperäistä 1920-luvun arkkitehtuuria — nousivat remontin myötä ansaittuun pääosaan sen sijaan, että ne olisi piilotettu tai ohitettu.</p>
-    <p style="color:rgba(200,191,176,0.7);">Lopputulos on asunto, jota ei voi rakentaa tyhjälle tontille. Se vaatii vanhan talon, kärsivällisyyden ja halun tehdä oikein.</p>
+      <p>Asunto purettiin käytännössä raakatilaksi. Kaikki pinnat, sähköt ja vedot uusittiin. Pohjaratkaisu suunniteltiin alusta — 105 neliömetriä jaettiin uudelleen niin, että tila palvelee arjen eri rytmejä: makuuhuone, keittiö, olohuone, erillinen työhuone, kodinhoitohuone, sauna ja kaksi wc:tä. Tilaa on, mutta ei turhaa.</p>
+      <p>Samalla tehtiin se, mikä oli välttämätöntä: rakennuksen oma luonne säilytettiin. Alkuperäinen tammiparketti kunnostettiin. Korkeat katot stukkeineen pidettiin koskemattomina. Vanhat ikkunapuitteet jäivät paikalleen. Olohuoneen komeat pylväät — osa talon alkuperäistä 1920-luvun arkkitehtuuria — nousivat remontin myötä ansaittuun pääosaan sen sijaan, että ne olisi piilotettu tai ohitettu.</p>
+      <p>Lopputulos on asunto, jota ei voi rakentaa tyhjälle tontille. Se vaatii vanhan talon, kärsivällisyyden ja halun tehdä oikein.</p>
+    </div>
   </div>
 </section>
 
@@ -546,13 +615,19 @@
         <div class="huone-rivi"><div class="huone-dot"></div>WC (2 kpl)</div>
         <div class="huone-rivi"><div class="huone-dot"></div>Kodinhoitohuone</div>
       </div>
-      <div style="margin-top:48px; padding:32px; background:var(--warm-white); border-left:1px solid var(--accent);">
-        <div style="font-family:'Cormorant',serif; font-size:20px; color:var(--dark); margin-bottom:12px; font-style:italic;">Sisäpiiriläisille ensin.</div>
-        <p style="font-size:15px; line-height:1.8; color:var(--mid);">Havenia-sisäpiiriin kuuluvat saavat mahdollisuuden tutustua kohteeseen ennen julkista myyntiä. <a href="index.html#sisapiiri" style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(139,115,85,0.4);">Liity sisäpiiriin →</a></p>
-      </div>
     </div>
   </div>
 </section>
+
+<!-- SISÄPIIRI CTA -->
+<div class="sisapiiri-cta">
+  <div class="sisapiiri-cta-inner">
+    <div class="sisapiiri-cta-label">Sisäpiiri</div>
+    <h2 class="sisapiiri-cta-title">Sisäpiiriläisille<br><em>ensin.</em></h2>
+    <p class="sisapiiri-cta-sub">Havenia-sisäpiiriin kuuluvat saavat mahdollisuuden tutustua kohteeseen henkilökohtaisesti ennen julkista myyntiä — ja etuoikeuden tehdä tarjous rauhassa.</p>
+    <a href="index.html#sisapiiri" class="sisapiiri-cta-btn">Liity sisäpiiriin</a>
+  </div>
+</div>
 
 <!-- YHTEYDENOTTO -->
 <section class="yhteydenotto-section">
