@@ -17,7 +17,7 @@
     --stone: #C8BFB0;
     --charcoal: #2C2A27;
     --dark: #1A1916;
-    --mid: #6B6560;
+    --mid: #524e4a;
     --accent: #8B7355;
     --line: rgba(44,42,39,0.12);
   }
@@ -429,7 +429,7 @@
     color: var(--cream);
     margin-bottom: 16px;
   }
-  .journal-text { font-size: 15px; color: rgba(200,191,176,0.55); line-height: 1.7; }
+  .journal-text { font-size: 15px; color: rgba(200,191,176,0.8); line-height: 1.7; }
   .journal-link {
     display: inline-block;
     margin-top: 20px;
@@ -636,11 +636,90 @@
     transform: none;
   }
 
+  /* ── FOCUS ── */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  button:focus-visible, a:focus-visible, input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--warm-white);
+    transition: background 0.4s, transform 0.3s, opacity 0.3s;
+  }
+  nav.scrolled .hamburger span { background: var(--charcoal); }
+  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--dark);
+    z-index: 99;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Cormorant', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--cream);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+  }
+  .mobile-menu a:hover { color: var(--stone); }
+
+  /* ── VISUALLY HIDDEN (for labels) ── */
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── TABLET ── */
+  @media (max-width: 1024px) {
+    nav { padding: 24px 40px; }
+    section { padding: 100px 40px; }
+    #hero { padding: 0 40px 60px; }
+    .intro-grid { gap: 60px; }
+    .about-layout { gap: 60px; }
+    .kohde-layout { gap: 48px; }
+    .journal-grid { grid-template-columns: repeat(2, 1fr); }
+    .sisapiiri-features { gap: 32px; }
+  }
+
   /* ── MOBILE ── */
   @media (max-width: 768px) {
     nav { padding: 22px 24px; }
     nav.scrolled { padding: 14px 24px; }
     .nav-links { display: none; }
+    .hamburger { display: flex; }
     section { padding: 80px 24px; }
     #hero { padding: 0 24px 60px; }
     .intro-grid, .about-layout, .kohde-layout, .philosophy-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -649,30 +728,54 @@
     footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
     .contact-links { flex-direction: column; gap: 32px; }
     #contact { padding: 100px 24px; }
-    #sisapiiri { padding: 100px 24px; }
+    #sisapiiri { padding: 60px 24px; }
     .form-row { flex-direction: column; }
     .sisapiiri-btn { width: 100%; }
     .sisapiiri-features { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ── REDUCED MOTION ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .hero-label, .hero-title, .hero-sub, .hero-ctas, .hero-scroll {
+      opacity: 1;
+    }
   }
 </style>
 </head>
 <body>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigaatio">
+  <a href="#about" onclick="suljeMobiilivalikko()">Havenia</a>
+  <a href="#philosophy" onclick="suljeMobiilivalikko()">Filosofia</a>
+  <a href="#kohde" onclick="suljeMobiilivalikko()">Kohteet</a>
+  <a href="#journal" onclick="suljeMobiilivalikko()">Ajatuksia</a>
+  <a href="#contact" onclick="suljeMobiilivalikko()">Yhteystiedot</a>
+</div>
+
 <!-- NAV -->
 <nav id="navbar">
   <a href="#" class="nav-logo">Havenia</a>
-  <ul class="nav-links">
+  <ul class="nav-links" role="list">
     <li><a href="#about">Havenia</a></li>
     <li><a href="#philosophy">Filosofia</a></li>
     <li><a href="#kohde">Kohteet</a></li>
     <li><a href="#journal">Ajatuksia</a></li>
     <li><a href="#contact">Yhteystiedot</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Avaa valikko" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg" role="img" aria-label="Havenia — laadukas sisustus"></div>
   <div class="hero-texture"></div>
   <div class="hero-lines"></div>
 
@@ -808,7 +911,7 @@
     </div>
 
     <div class="kohde-layout">
-      <div class="kohde-visual reveal" style="background-image: url('kohde.jpg'); background-size: cover; background-position: center;">
+      <div class="kohde-visual reveal" role="img" aria-label="Havenia Tuulensuu — kohteen visualisointi" style="background-image: url('kohde.jpg'); background-size: cover; background-position: center;">
         <div class="kohde-tag">Havenia Tuulensuu — 2026</div>
       </div>
 
@@ -883,7 +986,8 @@
 
     <div class="sisapiiri-form" id="sisapiiri-form">
       <div class="form-row">
-        <input type="email" class="sisapiiri-input" id="sisapiiri-email" placeholder="Sähköpostiosoitteesi" />
+        <label for="sisapiiri-email" class="visually-hidden">Sähköpostiosoitteesi</label>
+        <input type="email" class="sisapiiri-input" id="sisapiiri-email" placeholder="Sähköpostiosoitteesi" autocomplete="email" />
         <button class="sisapiiri-btn" onclick="liitySisapiiriin()">Liity sisäpiiriin</button>
       </div>
       <div class="sisapiiri-note">Voit poistua listalta milloin tahansa. Tietojasi ei luovuteta eteenpäin.</div>
@@ -936,7 +1040,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Havenia</div>
-  <div class="footer-copy" id="footer-copy-link" style="cursor:pointer;" onclick="toggleLoginBox()">© 2026 Havenia. Kaikki oikeudet pidätetään.</div>
+  <button class="footer-copy" id="footer-copy-link" onclick="toggleLoginBox()" aria-label="Kirjaudu sisään" style="background:none;border:none;cursor:pointer;font-family:inherit;letter-spacing:0.05em;">© 2026 Havenia. Kaikki oikeudet pidätetään.</button>
 </footer>
 
 <!-- SPLASH -->
@@ -944,22 +1048,24 @@
   <div style="font-family:'Cormorant',serif; font-size:clamp(42px,6vw,80px); font-weight:300; color:var(--cream); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:32px;">Havenia</div>
   <div style="font-family:'Cormorant',serif; font-size:clamp(22px,3vw,36px); font-weight:300; font-style:italic; color:var(--stone); margin-bottom:48px;">Pian saatavilla.</div>
   <div style="font-size:14px; letter-spacing:0.1em; color:rgba(200,191,176,0.4); max-width:400px; line-height:1.8;">Rakennamme jotain erityistä. Liity sisäpiiriin ja kuule ensimmäisenä, kun olemme valmiit.</div>
-  <div style="margin-top:48px; display:flex; gap:0; border:1px solid rgba(200,191,176,0.18); max-width:420px; width:100%;">
-    <input type="email" id="splash-email" placeholder="Sähköpostiosoitteesi" style="flex:1; padding:18px 24px; background:rgba(200,191,176,0.04); border:none; outline:none; font-family:'Jost',sans-serif; font-size:14px; font-weight:300; color:var(--cream); letter-spacing:0.02em;">
-    <button onclick="splashLiity()" style="padding:18px 28px; background:var(--accent); color:var(--cream); border:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; white-space:nowrap;">Liity</button>
+  <div style="margin-top:48px; display:flex; flex-wrap:wrap; gap:0; border:1px solid rgba(200,191,176,0.18); max-width:420px; width:100%;">
+    <label for="splash-email" class="visually-hidden">Sähköpostiosoitteesi</label>
+    <input type="email" id="splash-email" placeholder="Sähköpostiosoitteesi" autocomplete="email" style="flex:1; min-width:200px; padding:18px 24px; background:rgba(200,191,176,0.04); border:none; outline:none; font-family:'Jost',sans-serif; font-size:14px; font-weight:300; color:var(--cream); letter-spacing:0.02em;">
+    <button onclick="splashLiity()" style="padding:18px 28px; background:var(--accent); color:var(--cream); border:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; white-space:nowrap; width:100%; max-width:none; flex-shrink:0;">Liity sisäpiiriin</button>
   </div>
   <div id="splash-kiitos" style="display:none; margin-top:24px; font-size:14px; color:rgba(200,191,176,0.5); font-style:italic;">Kiitos — palaamme pian.</div>
   <div style="position:absolute; bottom:32px; font-size:12px; color:rgba(200,191,176,0.15); letter-spacing:0.05em; cursor:pointer;" onclick="toggleLoginBox()">© 2026 Havenia</div>
 </div>
 
 <!-- LOGIN BOX -->
-<div id="login-box" style="display:none; position:fixed; bottom:80px; left:50%; transform:translateX(-50%); z-index:10000; background:var(--dark); border:1px solid rgba(200,191,176,0.15); padding:32px 40px; text-align:center; min-width:300px;">
+<div id="login-box" style="display:none; position:fixed; bottom:80px; left:50%; transform:translateX(-50%); z-index:10000; background:var(--dark); border:1px solid rgba(200,191,176,0.15); padding:32px 40px; text-align:center; width:min(340px, calc(100vw - 48px));">
   <div style="font-family:'Cormorant',serif; font-size:20px; color:var(--cream); margin-bottom:20px; letter-spacing:0.05em;">Sisäänkirjautuminen</div>
   <div style="display:flex; gap:0; border:1px solid rgba(200,191,176,0.18);">
-    <input type="password" id="login-password" placeholder="Salasana" onkeydown="if(event.key==='Enter')tarkistaSalasana()" style="flex:1; padding:14px 20px; background:rgba(200,191,176,0.04); border:none; outline:none; font-family:'Jost',sans-serif; font-size:14px; color:var(--cream);">
+    <label for="login-password" class="visually-hidden">Salasana</label>
+    <input type="password" id="login-password" placeholder="Salasana" onkeydown="if(event.key==='Enter')tarkistaSalasana()" autocomplete="current-password" style="flex:1; padding:14px 20px; background:rgba(200,191,176,0.04); border:none; outline:none; font-family:'Jost',sans-serif; font-size:14px; color:var(--cream);">
     <button onclick="tarkistaSalasana()" style="padding:14px 24px; background:var(--accent); color:var(--cream); border:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:12px; letter-spacing:0.15em; text-transform:uppercase;">OK</button>
   </div>
-  <div id="login-error" style="display:none; margin-top:12px; font-size:13px; color:rgba(200,191,176,0.4);">Väärä salasana.</div>
+  <div id="login-error" role="alert" style="display:none; margin-top:12px; font-size:13px; color:rgba(200,191,176,0.4);">Väärä salasana.</div>
 </div>
 
 <script>
@@ -1010,6 +1116,24 @@
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 60);
   });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    hamburger.setAttribute('aria-label', isOpen ? 'Sulje valikko' : 'Avaa valikko');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  function suljeMobiilivalikko() {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Avaa valikko');
+    document.body.style.overflow = '';
+  }
 
   // Sisäpiiri-lomake
   function liitySisapiiriin() {

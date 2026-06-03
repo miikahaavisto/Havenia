@@ -97,11 +97,15 @@
   .footer-logo { font-family: 'Cormorant', serif; font-size: 18px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(200,191,176,0.25); }
   .footer-copy { font-size: 13px; color: rgba(200,191,176,0.2); letter-spacing: 0.05em; }
 
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   @media (max-width: 768px) {
     nav { padding: 22px 24px; }
     .article-hero, .article-body, .author-block { padding-left: 24px; padding-right: 24px; }
     .author-block { flex-direction: column; }
     footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
 </style>
 <script>if(!localStorage.getItem('havenia_auth')){window.location.href='index.html';}</script>
