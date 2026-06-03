@@ -55,9 +55,10 @@
   }
   .kohde-hero-content { position: relative; z-index: 2; max-width: 700px; }
   .kohde-hero-label {
-    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--stone); margin-bottom: 20px;
     opacity: 0; animation: fadeUp 1s ease 0.3s forwards;
+    word-break: break-word;
   }
   .kohde-hero-title {
     font-family: 'Cormorant', serif;
@@ -128,6 +129,8 @@
   .tarina-section {
     padding: 120px 60px;
     background: var(--warm-white);
+  }
+  .tarina-inner {
     max-width: 900px;
     margin: 0 auto;
   }
@@ -151,7 +154,7 @@
     padding-left: 36px;
     margin: 56px 0;
     font-family: 'Cormorant', serif;
-    font-size: 28px; font-weight: 300;
+    font-size: clamp(20px, 3vw, 28px); font-weight: 300;
     line-height: 1.6; color: var(--charcoal);
     font-style: italic;
   }
@@ -182,7 +185,7 @@
     padding-left: 36px;
     margin: 56px 0;
     font-family: 'Cormorant', serif;
-    font-size: 28px; font-weight: 300;
+    font-size: clamp(20px, 3vw, 28px); font-weight: 300;
     line-height: 1.6; color: var(--cream);
     font-style: italic;
   }
@@ -430,26 +433,38 @@
 
   /* TABLET */
   @media (max-width: 1024px) {
+    nav { padding: 24px 40px; }
+    .kohde-hero { padding: 0 40px 60px; }
+    .tarina-section { padding: 100px 40px; }
+    .uudistus-section { padding: 100px 40px; }
+    .sisapiiri-cta { padding: 80px 40px; }
+    .remontti-section { padding: 100px 40px; }
     .remontti-grid { grid-template-columns: repeat(2, 1fr); }
+    .tiedot-section { padding: 100px 40px; }
     .tiedot-inner { gap: 48px; }
+    .yhteydenotto-section { padding: 100px 40px; }
   }
 
   /* MOBILE */
   @media (max-width: 768px) {
     nav { padding: 20px 24px; }
     .kohde-hero { padding: 0 24px 60px; }
-    .tarina-section { padding: 80px 24px; }
-    .uudistus-section { padding: 80px 24px; }
+    .kohde-hero-sub { font-size: 15px; }
+    .tarina-section { padding: 72px 24px; }
+    .uudistus-section { padding: 72px 24px; }
+    .uudistus-inner { max-width: 100%; }
     .sisapiiri-cta { padding: 60px 24px; }
-    .remontti-section { padding: 80px 24px; }
+    .remontti-section { padding: 72px 24px; }
     .remontti-grid { grid-template-columns: 1fr; }
-    .tiedot-section { padding: 80px 24px; }
+    .remontti-item { padding: 32px 24px; }
+    .tiedot-section { padding: 72px 24px; }
     .tiedot-inner { grid-template-columns: 1fr; gap: 48px; }
     .hinta-iso { font-size: 48px; }
-    .yhteydenotto-section { padding: 80px 24px; }
+    .yhteydenotto-section { padding: 72px 24px; }
     .form-row-2 { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
     .carousel { aspect-ratio: 4/3; }
+    .tarina-quote, .uudistus-quote { padding-left: 20px; margin: 36px 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -501,13 +516,14 @@
 
 <!-- TARINA -->
 <section class="tarina-section">
-  <div class="section-label">Kohde</div>
-  <h2 class="tarina-title">Tuulensuun talo —<br><em>kaupungin parhaalla paikalla.</em></h2>
-  <div class="tarina-teksti">
-    <p>Arkkitehti Bertel Strömmerin suunnittelema kivirakennus kohoaa omalla arvotontillaan koko korttelin leveydeltä, Hämeenpuiston ja Hämeenkadun kulmassa. Vuonna 1929 valmistunut uusklassinen rakennus edustaa tyyliä, joka ei vanhene — ja osoitetta, jota Tampereella ei ole montaa.</p>
-    <p>Tuulensuun talo on osa Tampereen historiaa. Ja tämä asunto on sen arvoinen.</p>
-
-    <blockquote>Tuulensuu, 1929. Tämä koti, 2026.</blockquote>
+  <div class="tarina-inner">
+    <div class="section-label">Kohde</div>
+    <h2 class="tarina-title">Tuulensuun talo —<br><em>kaupungin parhaalla paikalla.</em></h2>
+    <div class="tarina-teksti">
+      <p>Arkkitehti Bertel Strömmerin suunnittelema kivirakennus kohoaa omalla arvotontillaan koko korttelin leveydeltä, Hämeenpuiston ja Hämeenkadun kulmassa. Vuonna 1929 valmistunut uusklassinen rakennus edustaa tyyliä, joka ei vanhene — ja osoitetta, jota Tampereella ei ole montaa.</p>
+      <p>Tuulensuun talo on osa Tampereen historiaa. Ja tämä asunto on sen arvoinen.</p>
+      <blockquote class="tarina-quote">Tuulensuu, 1929. Tämä koti, 2026.</blockquote>
+    </div>
   </div>
 </section>
 
