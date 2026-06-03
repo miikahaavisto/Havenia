@@ -730,10 +730,8 @@
     .tiimi-henkilo { flex-direction: column; align-items: flex-start; gap: 20px; }
     .tiimi-kuva { width: 80px; height: 80px; }
     .tiimi-rooli { font-size: 10px; letter-spacing: 0.15em; word-break: break-word; }
-    #tarjoa section { padding: 80px 24px; }
-    .tarjoa-layout { grid-template-columns: 1fr; gap: 48px; }
-    .tarjoa-form-row { grid-template-columns: 1fr; gap: 0; }
-    .tarjoa-sub { margin-bottom: 40px; font-size: 15px; }
+    .tarjoa-sub { margin-bottom: 32px; font-size: 15px; }
+    .tarjoa-nappi { width: 100%; text-align: center; }
     .journal-grid { grid-template-columns: 1fr; }
     .hero-scroll { display: none; }
     footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
@@ -823,6 +821,62 @@
     color: var(--cream); margin-bottom: 6px;
   }
   .kriteeri-teksti { font-size: 14px; line-height: 1.7; color: rgba(200,191,176,0.55); }
+  .tarjoa-nappi {
+    display: inline-block;
+    margin-top: 40px;
+    font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase;
+    padding: 18px 48px;
+    background: var(--accent); color: var(--cream);
+    border: none; cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    transition: background 0.3s;
+  }
+  .tarjoa-nappi:hover { background: #7a6448; }
+
+  /* TARJOA MODAALI */
+  .tarjoa-modaali-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .tarjoa-modaali-overlay.auki { display: flex; }
+  .tarjoa-modaali {
+    background: var(--dark);
+    border: 1px solid rgba(200,191,176,0.12);
+    padding: 48px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modaaliAuki 0.3s ease;
+  }
+  @keyframes modaaliAuki {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .tarjoa-modaali-sulku {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none;
+    color: rgba(200,191,176,0.35); font-size: 22px;
+    cursor: pointer; line-height: 1; padding: 4px 8px;
+    transition: color 0.3s;
+  }
+  .tarjoa-modaali-sulku:hover { color: var(--stone); }
+  .tarjoa-modaali-otsikko {
+    font-family: 'Cormorant', serif;
+    font-size: 32px; font-weight: 300;
+    color: var(--cream); margin-bottom: 8px;
+  }
+  .tarjoa-modaali-otsikko em { font-style: italic; color: var(--stone); }
+  .tarjoa-modaali-sub {
+    font-size: 14px; color: rgba(200,191,176,0.45);
+    line-height: 1.7; margin-bottom: 36px;
+  }
   .tarjoa-form-field { margin-bottom: 20px; }
   .tarjoa-form-field label {
     display: block;
@@ -837,9 +891,10 @@
     border: 1px solid rgba(200,191,176,0.15);
     color: var(--cream);
     font-family: 'Jost', sans-serif;
-    font-size: 15px; font-weight: 300;
+    font-size: 16px; font-weight: 300;
     outline: none;
     transition: border-color 0.3s, background 0.3s;
+    -webkit-appearance: none;
   }
   .tarjoa-form-field input:focus,
   .tarjoa-form-field textarea:focus {
@@ -860,10 +915,18 @@
   }
   .tarjoa-submit:hover { background: #7a6448; }
   .tarjoa-kiitos {
-    display: none; padding: 48px 0;
+    display: none;
+    text-align: center; padding: 40px 0;
+  }
+  .tarjoa-kiitos-title {
     font-family: 'Cormorant', serif;
-    font-size: 32px; font-weight: 300;
-    color: var(--cream); font-style: italic;
+    font-size: 40px; font-weight: 300; font-style: italic;
+    color: var(--cream); margin-bottom: 16px;
+  }
+  .tarjoa-kiitos p { font-size: 15px; color: rgba(200,191,176,0.5); line-height: 1.8; }
+  @media (max-width: 768px) {
+    .tarjoa-modaali { padding: 32px 24px; }
+    .tarjoa-form-row { grid-template-columns: 1fr; gap: 0; }
   }
 
   /* ── REDUCED MOTION ── */
@@ -1205,83 +1268,91 @@
       <h2 class="tarjoa-title">Onko sinulla koti,<br><em>jolla on tarina?</em></h2>
       <p class="tarjoa-sub">Havenia etsii valikoituja arvokohteita Tampereen keskustasta — rakennuksia, joilla on arkkitehtoninen historia ja potentiaali syntyä uudelleen. Jos omistat asunnon, jonka haluat nähdä saavan arvoisen tulevaisuuden, kuulemme mielellämme.</p>
 
-      <div class="tarjoa-layout">
-        <div class="tarjoa-kriteerit">
-          <div class="kriteeri">
-            <div class="kriteeri-num">01</div>
-            <div>
-              <div class="kriteeri-title">Sijainti</div>
-              <p class="kriteeri-teksti">Tampereen ydinkeskusta ja sen lähialueet. Katuosoite, jolla on merkitystä — ja tulevaisuus.</p>
-            </div>
-          </div>
-          <div class="kriteeri">
-            <div class="kriteeri-num">02</div>
-            <div>
-              <div class="kriteeri-title">Kohde</div>
-              <p class="kriteeri-teksti">Kerrostaloasunto, jossa on tilaa hengittää. Riittävästi neliöitä sille, että suunnittelu voi todella puhua.</p>
-            </div>
-          </div>
-          <div class="kriteeri">
-            <div class="kriteeri-num">03</div>
-            <div>
-              <div class="kriteeri-title">Historia</div>
-              <p class="kriteeri-teksti">Rakennuksella on luonne — arkkitehtuuria, joka on tehty aikaa varten. Sitä kunnioitetaan, ei ohiteta.</p>
-            </div>
-          </div>
-          <div class="kriteeri">
-            <div class="kriteeri-num">04</div>
-            <div>
-              <div class="kriteeri-title">Potentiaali</div>
-              <p class="kriteeri-teksti">Koti, joka odottaa parempaa aikaa. Näemme sen, mitä se voisi olla — ja teemme sen mahdolliseksi.</p>
-            </div>
+      <div class="tarjoa-kriteerit">
+        <div class="kriteeri">
+          <div class="kriteeri-num">01</div>
+          <div>
+            <div class="kriteeri-title">Sijainti</div>
+            <p class="kriteeri-teksti">Tampereen ydinkeskusta ja sen lähialueet. Katuosoite, jolla on merkitystä — ja tulevaisuus.</p>
           </div>
         </div>
-
-        <div class="tarjoa-form-side">
-          <form id="tarjoa-form" onsubmit="lahetaTarjoa(event)" novalidate>
-            <div class="tarjoa-form-row">
-              <div class="tarjoa-form-field">
-                <label for="tr-nimi">Nimi</label>
-                <input type="text" id="tr-nimi" name="nimi" placeholder="Etunimi Sukunimi" autocomplete="name" required>
-              </div>
-              <div class="tarjoa-form-field">
-                <label for="tr-puhelin">Puhelin</label>
-                <input type="tel" id="tr-puhelin" name="puhelin" placeholder="+358 50 000 0000" autocomplete="tel">
-              </div>
-            </div>
-            <div class="tarjoa-form-field">
-              <label for="tr-email">Sähköposti</label>
-              <input type="email" id="tr-email" name="email" placeholder="sinun@sahkoposti.fi" autocomplete="email" required>
-            </div>
-            <div class="tarjoa-form-field">
-              <label for="tr-osoite">Kohteen osoite</label>
-              <input type="text" id="tr-osoite" name="osoite" placeholder="Katuosoite, Tampere">
-            </div>
-            <div class="tarjoa-form-row">
-              <div class="tarjoa-form-field">
-                <label for="tr-koko">Koko (m²)</label>
-                <input type="text" id="tr-koko" name="koko" placeholder="esim. 85 m²">
-              </div>
-              <div class="tarjoa-form-field">
-                <label for="tr-kerros">Kerros</label>
-                <input type="text" id="tr-kerros" name="kerros" placeholder="esim. 4. kerros">
-              </div>
-            </div>
-            <div class="tarjoa-form-field">
-              <label for="tr-lisatiedot">Kerro kohteesta</label>
-              <textarea id="tr-lisatiedot" name="lisatiedot" placeholder="Kuvaa lyhyesti kohteen nykytila, rakennusvuosi tai muuta oleellista..."></textarea>
-            </div>
-            <button type="submit" class="tarjoa-submit" id="tarjoa-submit-btn">Lähetä kohde-ehdotus</button>
-          </form>
-          <div class="tarjoa-kiitos" id="tarjoa-kiitos">
-            Kiitos ehdotuksestasi.<br>
-            <span style="font-size:16px; font-family:'Jost',sans-serif; font-weight:300; font-style:normal; color:rgba(200,191,176,0.55);">Olemme yhteydessä, jos kohde sopii Havenian kriteereihin.</span>
+        <div class="kriteeri">
+          <div class="kriteeri-num">02</div>
+          <div>
+            <div class="kriteeri-title">Kohde</div>
+            <p class="kriteeri-teksti">Kerrostaloasunto, jossa on tilaa hengittää. Riittävästi neliöitä sille, että suunnittelu voi todella puhua.</p>
+          </div>
+        </div>
+        <div class="kriteeri">
+          <div class="kriteeri-num">03</div>
+          <div>
+            <div class="kriteeri-title">Historia</div>
+            <p class="kriteeri-teksti">Rakennuksella on luonne — arkkitehtuuria, joka on tehty aikaa varten. Sitä kunnioitetaan, ei ohiteta.</p>
+          </div>
+        </div>
+        <div class="kriteeri">
+          <div class="kriteeri-num">04</div>
+          <div>
+            <div class="kriteeri-title">Potentiaali</div>
+            <p class="kriteeri-teksti">Koti, joka odottaa parempaa aikaa. Näemme sen, mitä se voisi olla — ja teemme sen mahdolliseksi.</p>
           </div>
         </div>
       </div>
+
+      <button class="tarjoa-nappi" onclick="avaaModaali()">Tarjoa kohdettasi</button>
     </div>
   </div>
 </section>
+
+<!-- TARJOA MODAALI -->
+<div class="tarjoa-modaali-overlay" id="tarjoa-modaali-overlay" onclick="suljeModaaliTausta(event)" role="dialog" aria-modal="true" aria-label="Tarjoa kohdetta">
+  <div class="tarjoa-modaali" id="tarjoa-modaali">
+    <button class="tarjoa-modaali-sulku" onclick="suljeModaali()" aria-label="Sulje">✕</button>
+    <div id="tarjoa-modaali-sisalto">
+      <div class="tarjoa-modaali-otsikko">Kerro <em>kohteestasi.</em></div>
+      <p class="tarjoa-modaali-sub">Täytä yhteystietosi ja kohteen perustiedot — palaamme sinulle pian.</p>
+      <form id="tarjoa-form" onsubmit="lahetaTarjoa(event)" novalidate>
+        <div class="tarjoa-form-row">
+          <div class="tarjoa-form-field">
+            <label for="tr-nimi">Nimi</label>
+            <input type="text" id="tr-nimi" name="nimi" placeholder="Etunimi Sukunimi" autocomplete="name" required>
+          </div>
+          <div class="tarjoa-form-field">
+            <label for="tr-puhelin">Puhelin</label>
+            <input type="tel" id="tr-puhelin" name="puhelin" placeholder="+358 50 000 0000" autocomplete="tel">
+          </div>
+        </div>
+        <div class="tarjoa-form-field">
+          <label for="tr-email">Sähköposti</label>
+          <input type="email" id="tr-email" name="email" placeholder="sinun@sahkoposti.fi" autocomplete="email" required>
+        </div>
+        <div class="tarjoa-form-field">
+          <label for="tr-osoite">Kohteen osoite</label>
+          <input type="text" id="tr-osoite" name="osoite" placeholder="Katuosoite, Tampere">
+        </div>
+        <div class="tarjoa-form-row">
+          <div class="tarjoa-form-field">
+            <label for="tr-koko">Koko (m²)</label>
+            <input type="text" id="tr-koko" name="koko" placeholder="esim. 85 m²">
+          </div>
+          <div class="tarjoa-form-field">
+            <label for="tr-kerros">Kerros</label>
+            <input type="text" id="tr-kerros" name="kerros" placeholder="esim. 4. kerros">
+          </div>
+        </div>
+        <div class="tarjoa-form-field">
+          <label for="tr-lisatiedot">Kerro kohteesta</label>
+          <textarea id="tr-lisatiedot" name="lisatiedot" placeholder="Kuvaa lyhyesti kohteen nykytila, rakennusvuosi tai muuta oleellista..."></textarea>
+        </div>
+        <button type="submit" class="tarjoa-submit" id="tarjoa-submit-btn">Lähetä kohde-ehdotus</button>
+      </form>
+    </div>
+    <div class="tarjoa-kiitos" id="tarjoa-kiitos">
+      <div class="tarjoa-kiitos-title">Kiitos ehdotuksestasi.</div>
+      <p>Olemme yhteydessä, jos kohde sopii Havenian kriteereihin.</p>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -1399,7 +1470,23 @@
     document.body.style.overflow = '';
   }
 
-  // Tarjoa kohde -lomake
+  // Tarjoa modaali
+  function avaaModaali() {
+    const overlay = document.getElementById('tarjoa-modaali-overlay');
+    overlay.classList.add('auki');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => overlay.querySelector('input, textarea') && overlay.querySelector('input').focus(), 100);
+  }
+  function suljeModaali() {
+    document.getElementById('tarjoa-modaali-overlay').classList.remove('auki');
+    document.body.style.overflow = '';
+  }
+  function suljeModaaliTausta(e) {
+    if (e.target === document.getElementById('tarjoa-modaali-overlay')) suljeModaali();
+  }
+  // Sulje Esc-näppäimellä
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') suljeModaali(); });
+
   async function lahetaTarjoa(e) {
     e.preventDefault();
     const btn = document.getElementById('tarjoa-submit-btn');
@@ -1411,6 +1498,8 @@
     } catch(err) {}
     document.getElementById('tarjoa-form').style.display = 'none';
     document.getElementById('tarjoa-kiitos').style.display = 'block';
+    // Sulje modaali automaattisesti 3.5s päästä
+    setTimeout(() => suljeModaali(), 3500);
   }
 
   // Sisäpiiri-lomake
