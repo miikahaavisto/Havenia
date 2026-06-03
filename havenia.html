@@ -725,10 +725,15 @@
     section { padding: 80px 24px; }
     #hero { padding: 0 24px 60px; }
     .intro-grid, .about-layout, .kohde-layout, .philosophy-grid { grid-template-columns: 1fr; gap: 48px; }
-    .tiimi-grid { grid-template-columns: 1fr; gap: 40px; }
+    .tiimi-grid { grid-template-columns: 1fr; gap: 48px; }
     .tiimi-section { padding: 60px 24px 80px; }
-    .tarjoa-layout { grid-template-columns: 1fr; }
-    .tarjoa-form-row { grid-template-columns: 1fr; }
+    .tiimi-henkilo { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .tiimi-kuva { width: 80px; height: 80px; }
+    .tiimi-rooli { font-size: 10px; letter-spacing: 0.15em; word-break: break-word; }
+    #tarjoa section { padding: 80px 24px; }
+    .tarjoa-layout { grid-template-columns: 1fr; gap: 48px; }
+    .tarjoa-form-row { grid-template-columns: 1fr; gap: 0; }
+    .tarjoa-sub { margin-bottom: 40px; font-size: 15px; }
     .journal-grid { grid-template-columns: 1fr; }
     .hero-scroll { display: none; }
     footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
@@ -1299,12 +1304,15 @@
 </div>
 
 <!-- LOGIN BOX -->
-<div id="login-box" style="display:none; position:fixed; bottom:80px; left:50%; transform:translateX(-50%); z-index:10000; background:var(--dark); border:1px solid rgba(200,191,176,0.15); padding:32px 40px; text-align:center; width:min(340px, calc(100vw - 48px));">
-  <div style="font-family:'Cormorant',serif; font-size:20px; color:var(--cream); margin-bottom:20px; letter-spacing:0.05em;">Sisäänkirjautuminen</div>
+<div id="login-box" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:10000; background:var(--dark); border:1px solid rgba(200,191,176,0.15); padding:32px 40px; text-align:center; width:min(360px, calc(100vw - 32px)); box-shadow: 0 8px 40px rgba(0,0,0,0.6);">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+    <div style="font-family:'Cormorant',serif; font-size:20px; color:var(--cream); letter-spacing:0.05em;">Sisäänkirjautuminen</div>
+    <button onclick="toggleLoginBox()" aria-label="Sulje" style="background:none; border:none; color:rgba(200,191,176,0.4); cursor:pointer; font-size:20px; line-height:1; padding:4px 8px;">✕</button>
+  </div>
   <div style="display:flex; gap:0; border:1px solid rgba(200,191,176,0.18);">
     <label for="login-password" class="visually-hidden">Salasana</label>
-    <input type="password" id="login-password" placeholder="Salasana" onkeydown="if(event.key==='Enter')tarkistaSalasana()" autocomplete="current-password" style="flex:1; padding:14px 20px; background:rgba(200,191,176,0.04); border:none; outline:none; font-family:'Jost',sans-serif; font-size:14px; color:var(--cream);">
-    <button onclick="tarkistaSalasana()" style="padding:14px 24px; background:var(--accent); color:var(--cream); border:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:12px; letter-spacing:0.15em; text-transform:uppercase;">OK</button>
+    <input type="password" id="login-password" placeholder="Salasana" onkeydown="if(event.key==='Enter')tarkistaSalasana()" autocomplete="current-password" style="flex:1; padding:16px 20px; background:rgba(200,191,176,0.04); border:none; outline:none; font-family:'Jost',sans-serif; font-size:16px; color:var(--cream); -webkit-text-security:disc;">
+    <button onclick="tarkistaSalasana()" style="padding:16px 28px; background:var(--accent); color:var(--cream); border:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:13px; letter-spacing:0.15em; text-transform:uppercase; white-space:nowrap;">OK</button>
   </div>
   <div id="login-error" role="alert" style="display:none; margin-top:12px; font-size:13px; color:rgba(200,191,176,0.4);">Väärä salasana.</div>
 </div>
@@ -1322,9 +1330,22 @@
     splash.style.display = 'none';
   }
   function toggleLoginBox() {
-    loginBox.style.display = loginBox.style.display === 'none' ? 'block' : 'none';
-    if (loginBox.style.display === 'block') {
+    const isOpen = loginBox.style.display === 'none' || loginBox.style.display === '';
+    loginBox.style.display = isOpen ? 'block' : 'none';
+    let overlay = document.getElementById('login-overlay');
+    if (isOpen) {
+      if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'login-overlay';
+        overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.5);';
+        overlay.onclick = toggleLoginBox;
+        document.body.appendChild(overlay);
+      } else {
+        overlay.style.display = 'block';
+      }
       setTimeout(() => document.getElementById('login-password').focus(), 50);
+    } else {
+      if (overlay) overlay.style.display = 'none';
     }
   }
   function tarkistaSalasana() {
@@ -1333,6 +1354,8 @@
       localStorage.setItem('havenia_auth', '1');
       piilotaSplash();
       loginBox.style.display = 'none';
+      const ov = document.getElementById('login-overlay');
+      if (ov) ov.style.display = 'none';
     } else {
       document.getElementById('login-error').style.display = 'block';
     }
