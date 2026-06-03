@@ -712,6 +712,8 @@
     .kohde-layout { gap: 48px; }
     .journal-grid { grid-template-columns: repeat(2, 1fr); }
     .sisapiiri-features { gap: 32px; }
+    .tiimi-grid { gap: 48px; }
+    .tarjoa-layout { gap: 48px; }
   }
 
   /* ── MOBILE ── */
@@ -723,6 +725,10 @@
     section { padding: 80px 24px; }
     #hero { padding: 0 24px 60px; }
     .intro-grid, .about-layout, .kohde-layout, .philosophy-grid { grid-template-columns: 1fr; gap: 48px; }
+    .tiimi-grid { grid-template-columns: 1fr; gap: 40px; }
+    .tiimi-section { padding: 60px 24px 80px; }
+    .tarjoa-layout { grid-template-columns: 1fr; }
+    .tarjoa-form-row { grid-template-columns: 1fr; }
     .journal-grid { grid-template-columns: 1fr; }
     .hero-scroll { display: none; }
     footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
@@ -732,6 +738,122 @@
     .form-row { flex-direction: column; }
     .sisapiiri-btn { width: 100%; }
     .sisapiiri-features { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ── TIIMI ── */
+  .tiimi-section {
+    background: var(--cream);
+    padding: 80px 60px 120px;
+    border-top: 1px solid var(--line);
+  }
+  .tiimi-inner { max-width: 1100px; margin: 0 auto; }
+  .tiimi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 60px;
+  }
+  .tiimi-henkilo { display: flex; gap: 32px; align-items: flex-start; }
+  .tiimi-kuva {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    filter: grayscale(100%) contrast(1.05) brightness(1.02);
+  }
+  .tiimi-nimi {
+    font-family: 'Cormorant', serif;
+    font-size: 26px; font-weight: 400;
+    color: var(--dark); margin-bottom: 6px;
+  }
+  .tiimi-rooli {
+    font-size: 11px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .tiimi-bio { font-size: 15px; line-height: 1.8; color: var(--mid); }
+
+  /* ── TARJOA KOHDE ── */
+  #tarjoa { background: var(--charcoal); }
+  .tarjoa-inner { max-width: 1100px; margin: 0 auto; }
+  .tarjoa-inner .section-label { color: var(--stone); }
+  .tarjoa-title {
+    font-family: 'Cormorant', serif;
+    font-size: clamp(38px, 4.5vw, 60px);
+    font-weight: 300; line-height: 1.15;
+    color: var(--cream); margin-bottom: 24px;
+  }
+  .tarjoa-title em { font-style: italic; }
+  .tarjoa-sub {
+    font-size: 17px; line-height: 1.85;
+    color: rgba(200,191,176,0.6);
+    max-width: 620px; margin-bottom: 64px;
+  }
+  .tarjoa-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .tarjoa-kriteerit { display: flex; flex-direction: column; gap: 0; }
+  .kriteeri {
+    padding: 28px 0;
+    border-top: 1px solid rgba(200,191,176,0.12);
+    display: flex; gap: 24px; align-items: flex-start;
+  }
+  .kriteeri:last-child { border-bottom: 1px solid rgba(200,191,176,0.12); }
+  .kriteeri-num {
+    font-size: 11px; letter-spacing: 0.2em;
+    color: var(--accent); flex-shrink: 0;
+    padding-top: 3px;
+  }
+  .kriteeri-title {
+    font-family: 'Cormorant', serif;
+    font-size: 22px; font-weight: 400;
+    color: var(--cream); margin-bottom: 6px;
+  }
+  .kriteeri-teksti { font-size: 14px; line-height: 1.7; color: rgba(200,191,176,0.55); }
+  .tarjoa-form-field { margin-bottom: 20px; }
+  .tarjoa-form-field label {
+    display: block;
+    font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgba(200,191,176,0.4); margin-bottom: 10px;
+  }
+  .tarjoa-form-field input,
+  .tarjoa-form-field textarea {
+    width: 100%;
+    padding: 16px 20px;
+    background: rgba(200,191,176,0.04);
+    border: 1px solid rgba(200,191,176,0.15);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-size: 15px; font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .tarjoa-form-field input:focus,
+  .tarjoa-form-field textarea:focus {
+    border-color: rgba(200,191,176,0.4);
+    background: rgba(200,191,176,0.07);
+  }
+  .tarjoa-form-field input::placeholder,
+  .tarjoa-form-field textarea::placeholder { color: rgba(200,191,176,0.25); }
+  .tarjoa-form-field textarea { resize: vertical; min-height: 100px; }
+  .tarjoa-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tarjoa-submit {
+    width: 100%; padding: 20px;
+    background: var(--accent); color: var(--cream);
+    border: none; cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase;
+    transition: background 0.3s; margin-top: 8px;
+  }
+  .tarjoa-submit:hover { background: #7a6448; }
+  .tarjoa-kiitos {
+    display: none; padding: 48px 0;
+    font-family: 'Cormorant', serif;
+    font-size: 32px; font-weight: 300;
+    color: var(--cream); font-style: italic;
   }
 
   /* ── REDUCED MOTION ── */
@@ -756,6 +878,7 @@
   <a href="#kohde" onclick="suljeMobiilivalikko()">Kohteet</a>
   <a href="#journal" onclick="suljeMobiilivalikko()">Ajatuksia</a>
   <a href="#contact" onclick="suljeMobiilivalikko()">Yhteystiedot</a>
+  <a href="#tarjoa" onclick="suljeMobiilivalikko()">Tarjoa kohdetta</a>
 </div>
 
 <!-- NAV -->
@@ -767,6 +890,7 @@
     <li><a href="#kohde">Kohteet</a></li>
     <li><a href="#journal">Ajatuksia</a></li>
     <li><a href="#contact">Yhteystiedot</a></li>
+    <li><a href="#tarjoa">Tarjoa kohdetta</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Avaa valikko" aria-expanded="false" aria-controls="mobile-menu">
     <span></span><span></span><span></span>
@@ -780,9 +904,9 @@
   <div class="hero-lines"></div>
 
   <div class="hero-content">
-    <div class="hero-label">Havenia — Ensimmäinen kohde tulossa</div>
+    <div class="hero-label">Havenia — Paikka, jossa koti syntyy uudelleen</div>
     <h1 class="hero-title">Redesigned<br><em>Living.</em></h1>
-    <p class="hero-sub">Havenia suunnittelee ja toteuttaa koteja, joissa arkkitehtuuri, materiaalit ja tilan tunnelma muodostavat harkitun kokonaisuuden.</p>
+    <p class="hero-sub">Havenia herättää arvokodit uuteen elämään. Säilyttäen historian. Vahvistaen rauhaa. Tuoden takaisin sen, minkä kiireinen maailma on vienyt.</p>
     <div class="hero-ctas">
       <a href="#kohde" class="btn-primary">Tutustu kohteeseen</a>
       <a href="#contact" class="btn-ghost">Ota yhteyttä</a>
@@ -800,32 +924,32 @@
   <div class="section-inner">
 
     <div class="reveal">
-      <div class="section-label">Lähtökohta</div>
+      <div class="section-label">Miksi Havenia</div>
       <h2>Ei enemmän.<br><em>Paremmin.</em></h2>
     </div>
 
     <div class="intro-grid">
       <div class="reveal">
-        <p>Havenia on uusi toimija, jonka lähtökohta ei ole rakentaa mahdollisimman paljon, vaan suunnitella parempia koteja.</p>
+        <p>Moderni maailma kulkee nopeammin kuin ihminen ehtii hengittää. Koti on muuttunut läpikulkupaikaksi, jossa valo, tila ja rauha jäävät arjen taakse.</p>
         <br>
-        <p>Jokainen Havenia-kohde syntyy huolellisesta suunnittelusta, ajattomista materiaaleista ja ajatuksesta, että koti voi tuntua rauhallisemmalta, selkeämmältä ja toimivammalta.</p>
+        <p>Havenia syntyi vastalauseena tälle rytmille. Valitsemme kodit, joilla on historia. Uudistamme ne tavalla, joka antaa ihmiselle takaisin selkeyden ajatella, tilan hengittää ja rauhan olla läsnä.</p>
       </div>
 
       <div class="intro-promises reveal">
         <div class="promise-item">
           <div class="promise-num">01</div>
-          <div class="promise-title">Ajaton design</div>
-          <p class="promise-text">Tilat suunnitellaan kestämään aikaa ja käyttöä. Ei hetkellistä trendiä — tunnelma, joka säilyy.</p>
+          <div class="promise-title">Ajaton arkkitehtuuri</div>
+          <p class="promise-text">Valitsemme kohteet, joilla on historia. Rakennuksen sielu ohjaa suunnittelua — ei ohita sitä.</p>
         </div>
         <div class="promise-item">
           <div class="promise-num">02</div>
-          <div class="promise-title">Harkitut materiaalit</div>
-          <p class="promise-text">Laadukkaat, luonnolliset ja kestävät ratkaisut. Pinta, jota on miellyttävä koskettaa vuosikymmenten päästä.</p>
+          <div class="promise-title">Luonnolliset materiaalit</div>
+          <p class="promise-text">Puu, kivi, pellava. Pinnat, jotka tuntuvat oikeilta — ja joiden kauneus syvenee vuosien myötä.</p>
         </div>
         <div class="promise-item">
           <div class="promise-num">03</div>
-          <div class="promise-title">Rauhallinen asumisen kokemus</div>
-          <p class="promise-text">Selkeä tilasuunnittelu ja harkittu kokonaisuus luovat kodin, jossa mieli lepää.</p>
+          <div class="promise-title">Hiljainen ylellisyys</div>
+          <p class="promise-text">Havenia-koti ei huuda. Se rauhoittaa, hidastaa ja palauttaa. Tila, jossa mieli selkeytyy.</p>
         </div>
       </div>
     </div>
@@ -855,7 +979,7 @@
         </div>
 
         <div class="about-mission reveal">
-          Emme rakenna mahdollisimman paljon, vaan mahdollisimman hyvin.
+          "Modern luxury is the ability to think clearly, sleep deeply, move slowly, and live quietly in a world that's designed to prevent all four."
         </div>
 
         <div class="about-pillars reveal">
@@ -869,6 +993,32 @@
   </div>
 </section>
 
+<!-- TIIMI -->
+<div class="tiimi-section">
+  <div class="tiimi-inner">
+    <div class="section-label">Ihmiset</div>
+    <h2 style="font-family:'Cormorant',serif; font-size:clamp(36px,4vw,54px); font-weight:300; line-height:1.15; color:var(--dark); margin-bottom:0;">Havenian<br><em style="font-style:italic;">takana.</em></h2>
+    <div class="tiimi-grid">
+      <div class="tiimi-henkilo">
+        <img src="miika.jpg" alt="Miika Haavisto" class="tiimi-kuva">
+        <div>
+          <div class="tiimi-nimi">Miika Haavisto</div>
+          <div class="tiimi-rooli">Visio & Rakennuttaminen</div>
+          <p class="tiimi-bio">Miika vastaa Havenian visiosta ja suunnasta — siitä, mitkä kohteet valitaan ja miksi. Käytännössä hän johtaa kohteiden hankintaa, rakennuttamista ja projektin kokonaisuutta varmistamalla, että jokainen idea muuttuu konkreettiseksi, aikaa kestäväksi kodiksi.</p>
+        </div>
+      </div>
+      <div class="tiimi-henkilo">
+        <img src="maikki.jpg" alt="Maikki Hevari" class="tiimi-kuva">
+        <div>
+          <div class="tiimi-nimi">Maikki Hevari</div>
+          <div class="tiimi-rooli">Sisustussuunnittelu</div>
+          <p class="tiimi-bio">Maikki kantaa kokonaisvastuun Havenia-kohteiden sisustussuunnittelusta — tilasta, materiaaleista ja tunnelmasta yhdeksi harkituksi kokonaisuudeksi. Hän luo jokaiselle kohteelle persoonallisen mutta ajattoman ilmeen, joka kunnioittaa rakennuksen luonnetta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- PHILOSOPHY -->
 <section id="philosophy">
   <div class="section-inner">
@@ -880,18 +1030,18 @@
     <div class="philosophy-grid reveal">
       <div class="phil-item">
         <div class="phil-icon"></div>
-        <div class="phil-title">Tilasuunnittelu</div>
+        <div class="phil-title">Tila ensin</div>
         <p class="phil-text">Tilat suunnitellaan niin, että liikkuminen on luontevaa ja arki toimii. Avoimuus, selkeät näkymälinjat ja toimiva mittakaava ovat elementtejä, joihin palataan yhä uudelleen.</p>
       </div>
       <div class="phil-item">
         <div class="phil-icon"></div>
-        <div class="phil-title">Materiaalit</div>
-        <p class="phil-text">Havenia suosii ajattomia ja luonnollisia materiaaleja. Puu, kivi ja hillitty värimaailma luovat tiloja, jotka kestävät aikaa — ja joissa haluaa asua myös kymmenen vuoden kuluttua.</p>
+        <div class="phil-title">Luonnollinen ja kestävä</div>
+        <p class="phil-text">Puu, kivi ja hillitty värimaailma — materiaalit, jotka kantavat tarinan mukanaan ja kestävät aikaa ilman, että tarvitsee vaihtaa trendin mukana.</p>
       </div>
       <div class="phil-item">
         <div class="phil-icon"></div>
-        <div class="phil-title">Värit ja tunnelma</div>
-        <p class="phil-text">Skandinaavinen rauhallisuus. Lämmin mutta hillitty sävymaailma, joka tukee luonnonvaloa ja tilan kokemusta. Väri ei huuda — se hengittää.</p>
+        <div class="phil-title">Hiljaisuus on väri</div>
+        <p class="phil-text">Havenian värimaailma ei kilpaile huomiosta. Se luo tilan, jossa luonnonvalo pääsee pääosaan ja mieli löytää rauhan.</p>
       </div>
       <div class="phil-item">
         <div class="phil-icon"></div>
@@ -1000,17 +1150,17 @@
     <div class="sisapiiri-features">
       <div class="sf-item">
         <div class="sf-line"></div>
-        <div class="sf-title">Ennakkotieto</div>
+        <div class="sf-title">Ensimmäisenä</div>
         <div class="sf-text">Kuulet uusista kohteista ennen julkista ilmoitusta.</div>
       </div>
       <div class="sf-item">
         <div class="sf-line"></div>
-        <div class="sf-title">Yksityinen tutustuminen</div>
+        <div class="sf-title">Oma esittely</div>
         <div class="sf-text">Kutsu tutustua kohteeseen ennen virallista myyntiä.</div>
       </div>
       <div class="sf-item">
         <div class="sf-line"></div>
-        <div class="sf-title">Etuoikeus ostaa</div>
+        <div class="sf-title">Etuosto-oikeus</div>
         <div class="sf-text">Mahdollisuus tehdä tarjous ennen kuin kohde avautuu kaikille.</div>
       </div>
     </div>
@@ -1021,8 +1171,8 @@
 <section id="contact">
   <div class="reveal">
     <div class="section-label">Yhteystiedot</div>
-    <h2>Kiinnostuitko<br><em>Haveniasta?</em></h2>
-    <p>Jos etsit kotia tai haluat kuulla tulevista kohteista, ota yhteyttä. Vastaamme mielellämme.</p>
+    <h2>Ota yhteyttä.<br><em>Keskustellaan.</em></h2>
+    <p>Jokainen Havenia-projekti saa alkunsa oikeasta kohtaamisesta. Kerro tilanteestasi — vastataan henkilökohtaisesti.</p>
 
     <div class="contact-links">
       <a href="mailto:info@havenia.fi" class="contact-link">
@@ -1033,6 +1183,92 @@
         Puhelin
         <span>+358 50 553 0446</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- TARJOA KOHDE -->
+<section id="tarjoa">
+  <div class="section-inner">
+    <div class="tarjoa-inner">
+      <div class="section-label">Kohteen omistajille</div>
+      <h2 class="tarjoa-title">Onko sinulla koti,<br><em>jolla on tarina?</em></h2>
+      <p class="tarjoa-sub">Havenia etsii valikoituja arvokohteita Tampereen keskustasta — rakennuksia, joilla on arkkitehtoninen historia ja potentiaali syntyä uudelleen. Jos omistat asunnon, jonka haluat nähdä saavan arvoisen tulevaisuuden, kuulemme mielellämme.</p>
+
+      <div class="tarjoa-layout">
+        <div class="tarjoa-kriteerit">
+          <div class="kriteeri">
+            <div class="kriteeri-num">01</div>
+            <div>
+              <div class="kriteeri-title">Sijainti</div>
+              <p class="kriteeri-teksti">Tampereen ydinkeskusta ja sen lähialueet. Katuosoite, jolla on merkitystä — ja tulevaisuus.</p>
+            </div>
+          </div>
+          <div class="kriteeri">
+            <div class="kriteeri-num">02</div>
+            <div>
+              <div class="kriteeri-title">Kohde</div>
+              <p class="kriteeri-teksti">Kerrostaloasunto, jossa on tilaa hengittää. Riittävästi neliöitä sille, että suunnittelu voi todella puhua.</p>
+            </div>
+          </div>
+          <div class="kriteeri">
+            <div class="kriteeri-num">03</div>
+            <div>
+              <div class="kriteeri-title">Historia</div>
+              <p class="kriteeri-teksti">Rakennuksella on luonne — arkkitehtuuria, joka on tehty aikaa varten. Sitä kunnioitetaan, ei ohiteta.</p>
+            </div>
+          </div>
+          <div class="kriteeri">
+            <div class="kriteeri-num">04</div>
+            <div>
+              <div class="kriteeri-title">Potentiaali</div>
+              <p class="kriteeri-teksti">Koti, joka odottaa parempaa aikaa. Näemme sen, mitä se voisi olla — ja teemme sen mahdolliseksi.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tarjoa-form-side">
+          <form id="tarjoa-form" onsubmit="lahetaTarjoa(event)" novalidate>
+            <div class="tarjoa-form-row">
+              <div class="tarjoa-form-field">
+                <label for="tr-nimi">Nimi</label>
+                <input type="text" id="tr-nimi" name="nimi" placeholder="Etunimi Sukunimi" autocomplete="name" required>
+              </div>
+              <div class="tarjoa-form-field">
+                <label for="tr-puhelin">Puhelin</label>
+                <input type="tel" id="tr-puhelin" name="puhelin" placeholder="+358 50 000 0000" autocomplete="tel">
+              </div>
+            </div>
+            <div class="tarjoa-form-field">
+              <label for="tr-email">Sähköposti</label>
+              <input type="email" id="tr-email" name="email" placeholder="sinun@sahkoposti.fi" autocomplete="email" required>
+            </div>
+            <div class="tarjoa-form-field">
+              <label for="tr-osoite">Kohteen osoite</label>
+              <input type="text" id="tr-osoite" name="osoite" placeholder="Katuosoite, Tampere">
+            </div>
+            <div class="tarjoa-form-row">
+              <div class="tarjoa-form-field">
+                <label for="tr-koko">Koko (m²)</label>
+                <input type="text" id="tr-koko" name="koko" placeholder="esim. 85 m²">
+              </div>
+              <div class="tarjoa-form-field">
+                <label for="tr-kerros">Kerros</label>
+                <input type="text" id="tr-kerros" name="kerros" placeholder="esim. 4. kerros">
+              </div>
+            </div>
+            <div class="tarjoa-form-field">
+              <label for="tr-lisatiedot">Kerro kohteesta</label>
+              <textarea id="tr-lisatiedot" name="lisatiedot" placeholder="Kuvaa lyhyesti kohteen nykytila, rakennusvuosi tai muuta oleellista..."></textarea>
+            </div>
+            <button type="submit" class="tarjoa-submit" id="tarjoa-submit-btn">Lähetä kohde-ehdotus</button>
+          </form>
+          <div class="tarjoa-kiitos" id="tarjoa-kiitos">
+            Kiitos ehdotuksestasi.<br>
+            <span style="font-size:16px; font-family:'Jost',sans-serif; font-weight:300; font-style:normal; color:rgba(200,191,176,0.55);">Olemme yhteydessä, jos kohde sopii Havenian kriteereihin.</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1133,6 +1369,20 @@
     hamburger.setAttribute('aria-expanded', 'false');
     hamburger.setAttribute('aria-label', 'Avaa valikko');
     document.body.style.overflow = '';
+  }
+
+  // Tarjoa kohde -lomake
+  async function lahetaTarjoa(e) {
+    e.preventDefault();
+    const btn = document.getElementById('tarjoa-submit-btn');
+    btn.textContent = 'Lähetetään...';
+    btn.disabled = true;
+    const data = new FormData(document.getElementById('tarjoa-form'));
+    try {
+      await fetch('tarjoa-kohde.php', { method: 'POST', body: data });
+    } catch(err) {}
+    document.getElementById('tarjoa-form').style.display = 'none';
+    document.getElementById('tarjoa-kiitos').style.display = 'block';
   }
 
   // Sisäpiiri-lomake
