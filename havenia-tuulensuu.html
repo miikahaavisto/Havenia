@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="Havenia%20logo%20favicon.svg">
-<link rel="icon" type="image/png" href="Havenia%20logo%20favicon.png">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -86,46 +86,56 @@
   }
 
   /* KARUSELLI */
-  .carousel-section { background: var(--dark); padding: 0; }
-  .carousel {
+  .carousel-section {
+    background: var(--dark);
+    padding: 60px 0 72px;
+  }
+  .carousel-wrapper {
     position: relative;
-    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 80px;
+  }
+  .carousel {
     overflow: hidden;
-    aspect-ratio: 16/7;
   }
   .carousel-track {
     display: flex;
-    height: 100%;
-    transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    gap: 12px;
+    transition: transform 0.65s cubic-bezier(0.4,0,0.2,1);
   }
   .carousel-slide {
-    min-width: 100%;
-    height: 100%;
+    min-width: calc(33.333% - 8px);
+    aspect-ratio: 3/4;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     flex-shrink: 0;
+    opacity: 0.45;
+    transition: opacity 0.4s;
   }
+  .carousel-slide.active-slide { opacity: 1; }
   .carousel-btn {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    background: rgba(26,25,22,0.6); border: 1px solid rgba(200,191,176,0.2);
-    color: var(--stone); width: 52px; height: 52px;
-    cursor: pointer; font-size: 20px; z-index: 10;
+    position: absolute; top: 40%; transform: translateY(-50%);
+    background: rgba(45,41,48,0.75); border: 1px solid rgba(200,191,176,0.2);
+    color: var(--stone); width: 48px; height: 48px;
+    cursor: pointer; font-size: 18px; z-index: 10;
     display: flex; align-items: center; justify-content: center;
     transition: background 0.3s;
   }
-  .carousel-btn:hover { background: rgba(139,115,85,0.6); }
-  .carousel-prev { left: 24px; }
-  .carousel-next { right: 24px; }
+  .carousel-btn:hover { background: rgba(139,115,85,0.75); }
+  .carousel-prev { left: 16px; }
+  .carousel-next { right: 16px; }
   .carousel-dots {
-    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 8px; z-index: 10;
+    display: flex; gap: 8px;
+    justify-content: center;
+    margin-top: 28px;
   }
   .carousel-dot {
-    width: 6px; height: 6px; border-radius: 50%;
+    width: 5px; height: 5px; border-radius: 50%;
     background: rgba(200,191,176,0.3); border: none; cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.3s;
   }
-  .carousel-dot.active { background: var(--stone); }
+  .carousel-dot.active { background: var(--stone); transform: scale(1.4); }
 
   /* TARINA */
   .tarina-section {
@@ -445,6 +455,8 @@
     .tiedot-section { padding: 100px 40px; }
     .tiedot-inner { gap: 48px; }
     .yhteydenotto-section { padding: 100px 40px; }
+    .carousel-wrapper { padding: 0 56px; }
+    .carousel-slide { min-width: calc(50% - 6px); }
   }
 
   /* MOBILE */
@@ -465,7 +477,9 @@
     .yhteydenotto-section { padding: 72px 24px; }
     .form-row-2 { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
-    .carousel { aspect-ratio: 4/3; }
+    .carousel-wrapper { padding: 0 44px; }
+    .carousel-slide { min-width: calc(80% - 6px); }
+    .carousel-section { padding: 40px 0 56px; }
     .tarina-quote, .uudistus-quote { padding-left: 20px; margin: 36px 0; }
   }
 
@@ -481,7 +495,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo"><img src="Havenia%20logo%20tumma.svg" alt="Havenia" style="height:26px;width:auto;"></a>
+  <a href="index.html" class="nav-logo"><img src="logo-tumma.svg" alt="Havenia" style="height:40px;width:auto;"></a>
   <a href="index.html#kohde" class="nav-back">← Kohteet</a>
 </nav>
 
@@ -504,17 +518,19 @@
 
 <!-- KARUSELLI -->
 <div class="carousel-section" aria-label="Kuvakaruselli kohteesta">
-  <div class="carousel" id="carousel">
-    <div class="carousel-track" id="carouselTrack">
-      <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8769.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 1"></div>
-      <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8776.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 2"></div>
-      <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8778.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 3"></div>
-      <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8785.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 4"></div>
-      <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8788.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 5"></div>
-      <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8829.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 6"></div>
-      <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8833.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 7"></div>
-      <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8990.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 8"></div>
-      <div class="carousel-slide" style="background-image:url('Tuulensuu/kohde.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 9"></div>
+  <div class="carousel-wrapper">
+    <div class="carousel" id="carousel">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8769.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 1"></div>
+        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8776.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 2"></div>
+        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8778.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 3"></div>
+        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8785.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 4"></div>
+        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8788.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 5"></div>
+        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8829.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 6"></div>
+        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8833.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 7"></div>
+        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8990.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 8"></div>
+        <div class="carousel-slide" style="background-image:url('Tuulensuu/kohde.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 9"></div>
+      </div>
     </div>
     <button class="carousel-btn carousel-prev" aria-label="Edellinen kuva" onclick="karuselliSiirry(-1)">&#8592;</button>
     <button class="carousel-btn carousel-next" aria-label="Seuraava kuva" onclick="karuselliSiirry(1)">&#8594;</button>
@@ -700,17 +716,19 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><img src="Havenia%20logo%20valk.svg" alt="Havenia" style="height:18px;width:auto;opacity:0.25;"></div>
+  <div class="footer-logo"><img src="logo-valk.svg" alt="Havenia" style="height:22px;width:auto;opacity:0.3;"></div>
   <div class="footer-copy">© 2026 Havenia. Kaikki oikeudet pidätetään.</div>
 </footer>
 
 <script>
-  // Karuselli
+  // Karuselli — 3-up portrait gallery
   let nykyinen = 0;
   const slides = document.querySelectorAll('.carousel-slide');
   const track = document.getElementById('carouselTrack');
   const dotsContainer = document.getElementById('carouselDots');
+  const slideCount = slides.length;
 
+  // Luo dots
   slides.forEach((_, i) => {
     const dot = document.createElement('button');
     dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
@@ -720,19 +738,41 @@
   });
 
   function karuselliPaivita() {
-    track.style.transform = `translateX(-${nykyinen * 100}%)`;
+    // Laske slide-leveys + gap
+    const slideEl = slides[0];
+    const slideW = slideEl.offsetWidth;
+    const gap = 12;
+    const offset = nykyinen * (slideW + gap);
+    track.style.transform = `translateX(-${offset}px)`;
+
+    // Päivitä aktiivinen slide
+    slides.forEach((s, i) => s.classList.toggle('active-slide', i === nykyinen));
+
+    // Päivitä dots
     document.querySelectorAll('.carousel-dot').forEach((d, i) => {
       d.classList.toggle('active', i === nykyinen);
     });
   }
+
   function karuselliSiirry(suunta) {
-    nykyinen = (nykyinen + suunta + slides.length) % slides.length;
+    nykyinen = (nykyinen + suunta + slideCount) % slideCount;
     karuselliPaivita();
   }
   function karuselliMene(i) {
     nykyinen = i;
     karuselliPaivita();
   }
+
+  // Swipe-tuki mobiilille
+  let touchX = 0;
+  track.addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive: true});
+  track.addEventListener('touchend', e => {
+    const diff = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) karuselliSiirry(diff > 0 ? 1 : -1);
+  }, {passive: true});
+
+  // Alustus
+  karuselliPaivita();
 
   // Auto-advance
   setInterval(() => karuselliSiirry(1), 5000);
@@ -759,5 +799,6 @@
 
 </body>
 </html>
+
 
 
