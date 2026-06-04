@@ -435,14 +435,23 @@
     margin-top: 48px;
   }
   .huone-rivi {
-    display: flex; align-items: center; gap: 16px;
-    padding: 16px 0;
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 18px 0;
     border-bottom: 1px solid var(--line);
-    font-size: 15px; color: var(--mid);
   }
   .huone-dot {
     width: 4px; height: 4px; border-radius: 50%;
     background: var(--accent); flex-shrink: 0;
+    margin-top: 10px;
+  }
+  .huone-nimi {
+    font-size: 17px; font-weight: 400;
+    color: var(--dark); margin-bottom: 4px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .huone-kuvaus {
+    font-size: 14px; line-height: 1.65;
+    color: var(--mid); font-style: italic;
   }
   .tiedot-right-title {
     font-family: 'Cormorant Garamond', serif;
@@ -754,14 +763,62 @@
     <div class="tiedot-right">
       <div class="tiedot-right-title">Huoneistossa</div>
       <div class="huoneet-lista">
-        <div class="huone-rivi"><div class="huone-dot"></div>Olohuone</div>
-        <div class="huone-rivi"><div class="huone-dot"></div>Keittiö</div>
-        <div class="huone-rivi"><div class="huone-dot"></div>Makuuhuone</div>
-        <div class="huone-rivi"><div class="huone-dot"></div>Työhuone</div>
-        <div class="huone-rivi"><div class="huone-dot"></div>Sauna</div>
-        <div class="huone-rivi"><div class="huone-dot"></div>Kylpyhuone</div>
-        <div class="huone-rivi"><div class="huone-dot"></div>WC (2 kpl)</div>
-        <div class="huone-rivi"><div class="huone-dot"></div>Kodinhoitohuone</div>
+        <div class="huone-rivi">
+          <div class="huone-dot"></div>
+          <div>
+            <div class="huone-nimi">Olohuone</div>
+            <div class="huone-kuvaus">Avara, korkea huonekorkeus ja alkuperäiset arkkitehtoniset pylväät täyttävät tilan.</div>
+          </div>
+        </div>
+        <div class="huone-rivi">
+          <div class="huone-dot"></div>
+          <div>
+            <div class="huone-nimi">Keittiö</div>
+            <div class="huone-kuvaus">Design-täydellisyys — jokainen yksityiskohta harkittu materiaalista laitteisiin.</div>
+          </div>
+        </div>
+        <div class="huone-rivi">
+          <div class="huone-dot"></div>
+          <div>
+            <div class="huone-nimi">Makuuhuone</div>
+            <div class="huone-kuvaus">Rauhoittumisen tyyssija — luksus-kokolattiamatolla peitetty hiljaisuuden huone.</div>
+          </div>
+        </div>
+        <div class="huone-rivi">
+          <div class="huone-dot"></div>
+          <div>
+            <div class="huone-nimi">Työhuone</div>
+            <div class="huone-kuvaus">Rajattu upean tammiraamisen lasioven taakse — oma rauhallinen maailmansa.</div>
+          </div>
+        </div>
+        <div class="huone-rivi">
+          <div class="huone-dot"></div>
+          <div>
+            <div class="huone-nimi">Sauna</div>
+            <div class="huone-kuvaus">Kaariovi, laatan ja keisaripuun yhdistelmä — uskomaton kokonaisuus, joka täytyy nähdä.</div>
+          </div>
+        </div>
+        <div class="huone-rivi">
+          <div class="huone-dot"></div>
+          <div>
+            <div class="huone-nimi">Kylpyhuone</div>
+            <div class="huone-kuvaus">Todellinen spa-osasto — amme, jättilaattojen ja herttapinoitteiden täydellinen yhdistelmä.</div>
+          </div>
+        </div>
+        <div class="huone-rivi">
+          <div class="huone-dot"></div>
+          <div>
+            <div class="huone-nimi">WC (2 kpl)</div>
+            <div class="huone-kuvaus">Tyylikäs tilaihme — tyylikkyyden ja täydellisten tilaratkaisujen yhdistelmä.</div>
+          </div>
+        </div>
+        <div class="huone-rivi">
+          <div class="huone-dot"></div>
+          <div>
+            <div class="huone-nimi">Kodinhoitohuone</div>
+            <div class="huone-kuvaus">Toimivuus piilotettuna hillittyyn tyylikkyyteeyn — arki sujuu näkymättömästi.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -770,22 +827,25 @@
 <!-- HAVENIA SIGNATURE -->
 <section class="signature-section">
   <div class="signature-inner">
-    <div class="signature-eyebrow">Havenia Signature</div>
+    <div class="signature-eyebrow">Lisäpalvelu — Havenia Signature</div>
     <h2 class="signature-title">Ei muuta kuin<br><em>muuttaa sisään.</em></h2>
-    <p class="signature-tagline">Täydellinen koti. Täysin sisustettuna. Täysin valmiina.</p>
+    <p class="signature-tagline">Valinnaisena lisäpalveluna: täydellinen koti, täysin sisustettuna, täysin valmiina.</p>
 
     <div class="signature-layout">
       <div>
         <p class="signature-desc">
-          Havenia Signature on ainutlaatuinen palvelumme, jossa toimitat asunnon <strong>täysin sisustettuna, kalustettuna ja muuttovalmiina</strong> — viimeiseen tyynyyn asti.
+          Asunto on muuttovalmis sellaisenaan. Mutta niille, jotka haluavat enemmän — tarjoamme <strong>Havenia Signature</strong> -palvelun, jossa koti toimitetaan täysin sisustettuna ja kalustettuna, viimeiseen tyynyyn asti.
         </p>
         <p class="signature-desc">
           Maikki Hevari suunnittelee kodin kokonaisuuden alusta loppuun: huonekalut, tekstiilit, valaistuksen, taide-esineet ja yksityiskohdat. Kaikki hankitaan, toimitetaan ja asennetaan paikoilleen. Sinä tuot ainoastaan itsesi.
         </p>
         <p class="signature-desc">
-          Tämä on enemmän kuin muuttovalmis asunto — se on <strong>valmis koti</strong>. Sellainen, jossa arkkitehtuuri, remonttiratkaisu ja sisustus muodostavat yhden harkitun kokonaisuuden. Ei kompromisseja, ei koordinointivaivaa, ei epävarmuutta.
+          Tulos on koti, jossa arkkitehtuuri, remonttiratkaisu ja sisustus muodostavat <strong>yhden täydellisen kokonaisuuden</strong>. Ei kompromisseja. Ei koordinointivaivaa. Ei epävarmuutta.
         </p>
-        <a href="mailto:info@havenia.fi?subject=Olen%20kiinnostunut%20Havenia%20Signature%20-palvelusta" class="signature-cta">Kysy Havenia Signaturesta</a>
+        <div style="display:flex; flex-direction:column; gap:12px; margin-top:8px;">
+          <a href="mailto:info@havenia.fi?subject=Olen%20kiinnostunut%20Havenia%20Signature%20-palvelusta" class="signature-cta">Kysy Havenia Signaturesta</a>
+          <span style="font-size:13px; font-style:italic; color:var(--mid); letter-spacing:0.03em;">Tilattavissa erikseen kaupanteon yhteydessä.</span>
+        </div>
       </div>
 
       <div class="signature-sisaltaa">
