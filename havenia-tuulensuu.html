@@ -276,6 +276,114 @@
     color: rgba(200,191,176,0.6);
   }
 
+  /* HAVENIA SIGNATURE */
+  .signature-section {
+    background: var(--cream);
+    padding: 120px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .signature-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 100% 50%, rgba(139,115,85,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .signature-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .signature-eyebrow {
+    font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .signature-eyebrow::after {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: var(--accent); opacity: 0.4;
+  }
+  .signature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 300; line-height: 1.05;
+    color: var(--dark); margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .signature-title em { font-style: italic; color: var(--accent); }
+  .signature-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 300; font-style: italic;
+    color: var(--mid); margin-bottom: 64px;
+    line-height: 1.5;
+  }
+  .signature-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .signature-desc {
+    font-size: 19px; line-height: 2.0;
+    color: var(--mid); font-style: italic;
+    margin-bottom: 40px;
+  }
+  .signature-desc strong {
+    font-style: normal; font-weight: 400;
+    color: var(--charcoal);
+  }
+  .signature-cta {
+    display: inline-block;
+    font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase;
+    padding: 18px 44px;
+    background: var(--charcoal); color: var(--cream);
+    text-decoration: none;
+    transition: background 0.3s;
+    border: none; cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .signature-cta:hover { background: var(--accent); }
+  .signature-sisaltaa {
+    border-top: 1px solid var(--line);
+    padding-top: 40px;
+  }
+  .signature-sisaltaa-otsikko {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--stone); margin-bottom: 28px;
+  }
+  .signature-lista {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .signature-item {
+    display: flex; gap: 20px; align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .signature-item:first-child { border-top: 1px solid var(--line); }
+  .signature-item-num {
+    font-size: 11px; letter-spacing: 0.2em;
+    color: var(--accent); flex-shrink: 0;
+    padding-top: 4px;
+  }
+  .signature-item-nimi {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 400;
+    color: var(--dark); margin-bottom: 4px;
+  }
+  .signature-item-kuvaus {
+    font-size: 15px; line-height: 1.7;
+    color: var(--mid); font-style: italic;
+  }
+  @media (max-width: 1024px) {
+    .signature-section { padding: 100px 40px; }
+    .signature-layout { gap: 48px; }
+  }
+  @media (max-width: 768px) {
+    .signature-section { padding: 72px 24px; }
+    .signature-layout { grid-template-columns: 1fr; gap: 48px; }
+  }
+
   /* TIEDOT */
   .tiedot-section {
     padding: 120px 60px;
@@ -654,6 +762,71 @@
         <div class="huone-rivi"><div class="huone-dot"></div>Kylpyhuone</div>
         <div class="huone-rivi"><div class="huone-dot"></div>WC (2 kpl)</div>
         <div class="huone-rivi"><div class="huone-dot"></div>Kodinhoitohuone</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HAVENIA SIGNATURE -->
+<section class="signature-section">
+  <div class="signature-inner">
+    <div class="signature-eyebrow">Havenia Signature</div>
+    <h2 class="signature-title">Ei muuta kuin<br><em>muuttaa sisään.</em></h2>
+    <p class="signature-tagline">Täydellinen koti. Täysin sisustettuna. Täysin valmiina.</p>
+
+    <div class="signature-layout">
+      <div>
+        <p class="signature-desc">
+          Havenia Signature on ainutlaatuinen palvelumme, jossa toimitat asunnon <strong>täysin sisustettuna, kalustettuna ja muuttovalmiina</strong> — viimeiseen tyynyyn asti.
+        </p>
+        <p class="signature-desc">
+          Maikki Hevari suunnittelee kodin kokonaisuuden alusta loppuun: huonekalut, tekstiilit, valaistuksen, taide-esineet ja yksityiskohdat. Kaikki hankitaan, toimitetaan ja asennetaan paikoilleen. Sinä tuot ainoastaan itsesi.
+        </p>
+        <p class="signature-desc">
+          Tämä on enemmän kuin muuttovalmis asunto — se on <strong>valmis koti</strong>. Sellainen, jossa arkkitehtuuri, remonttiratkaisu ja sisustus muodostavat yhden harkitun kokonaisuuden. Ei kompromisseja, ei koordinointivaivaa, ei epävarmuutta.
+        </p>
+        <a href="mailto:info@havenia.fi?subject=Olen%20kiinnostunut%20Havenia%20Signature%20-palvelusta" class="signature-cta">Kysy Havenia Signaturesta</a>
+      </div>
+
+      <div class="signature-sisaltaa">
+        <div class="signature-sisaltaa-otsikko">Sisältää</div>
+        <div class="signature-lista">
+          <div class="signature-item">
+            <div class="signature-item-num">01</div>
+            <div>
+              <div class="signature-item-nimi">Kokonaisvaltainen sisustussuunnittelu</div>
+              <p class="signature-item-kuvaus">Maikki Hevari suunnittelee jokaisen tilan — värit, materiaalit, valaistus, kalusteet ja tekstiilit yhtenä kokonaisuutena.</p>
+            </div>
+          </div>
+          <div class="signature-item">
+            <div class="signature-item-num">02</div>
+            <div>
+              <div class="signature-item-nimi">Kaikki huonekalut hankittuna</div>
+              <p class="signature-item-kuvaus">Sohvat, sängyt, pöydät, tuolit, säilytysratkaisut — valittu, tilattu ja toimitettu paikoilleen.</p>
+            </div>
+          </div>
+          <div class="signature-item">
+            <div class="signature-item-num">03</div>
+            <div>
+              <div class="signature-item-nimi">Tekstiilit, valaisimet ja somisteet</div>
+              <p class="signature-item-kuvaus">Verhot, matot, tyynyt, taulut, kasvit ja yksityiskohdat — kaikki kodin tunnelma viimeisteltyinä.</p>
+            </div>
+          </div>
+          <div class="signature-item">
+            <div class="signature-item-num">04</div>
+            <div>
+              <div class="signature-item-nimi">Asennus ja styling</div>
+              <p class="signature-item-kuvaus">Kaikki toimitetaan ja asennetaan. Saat kodin juhlakunnossa — ensimmäisestä päivästä alkaen.</p>
+            </div>
+          </div>
+          <div class="signature-item">
+            <div class="signature-item-num">05</div>
+            <div>
+              <div class="signature-item-nimi">Harmoninen kokonaisuus</div>
+              <p class="signature-item-kuvaus">Asunto ja sisustus suunnitellaan yhdessä — ei erikseen. Tulos on koti, ei kokoelma tavaroita.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
