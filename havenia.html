@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fi">
 <head>
 <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 <title>Havenia — Redesigned Living</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="Havenia%20logo%20favicon.svg">
 <link rel="icon" type="image/png" href="Havenia%20logo%20favicon.png">
 
@@ -14,20 +14,20 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream: #F5F1EA;
-    --warm-white: #FAF8F4;
+    --cream: #efedea;
+    --warm-white: #f5f4f1;
     --stone: #C8BFB0;
-    --charcoal: #2C2A27;
-    --dark: #1A1916;
-    --mid: #524e4a;
+    --charcoal: #403b44;
+    --dark: #2d2930;
+    --mid: #6b6574;
     --accent: #8B7355;
-    --line: rgba(44,42,39,0.12);
+    --line: rgba(64,59,68,0.12);
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Jost', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     background: var(--warm-white);
     color: var(--charcoal);
     font-weight: 300;
@@ -45,7 +45,7 @@
     transition: background 0.5s ease, padding 0.4s ease;
   }
   nav.scrolled {
-    background: rgba(250,248,244,0.95);
+    background: rgba(245,244,241,0.96);
     backdrop-filter: blur(12px);
     padding: 18px 60px;
     border-bottom: 1px solid var(--line);
@@ -90,10 +90,10 @@
     position: absolute; inset: 0; z-index: 1;
     background: linear-gradient(
       to top,
-      rgba(26,25,22,0.85) 0%,
-      rgba(26,25,22,0.45) 40%,
-      rgba(26,25,22,0.15) 70%,
-      rgba(26,25,22,0.25) 100%
+      rgba(45,41,48,0.85) 0%,
+      rgba(45,41,48,0.45) 40%,
+      rgba(45,41,48,0.15) 70%,
+      rgba(45,41,48,0.25) 100%
     );
   }
   .hero-lines {
@@ -122,7 +122,7 @@
     animation: fadeUp 1s ease 0.3s forwards;
   }
   .hero-title {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: clamp(62px, 8vw, 100px);
     font-weight: 300;
     line-height: 1.0;
@@ -205,7 +205,7 @@
     margin-bottom: 20px;
   }
   h2 {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: clamp(42px, 4.5vw, 62px);
     font-weight: 300;
     line-height: 1.15;
@@ -216,6 +216,7 @@
     font-size: 17px;
     line-height: 1.9;
     color: var(--mid);
+    font-style: italic;
   }
   hr.divider {
     border: none;
@@ -247,7 +248,7 @@
     margin-bottom: 12px;
   }
   .promise-title {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 26px;
     font-weight: 400;
     color: var(--dark);
@@ -268,7 +269,7 @@
   }
   .about-right { padding-top: 60px; }
   .about-mission {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 32px;
     font-weight: 300;
     line-height: 1.5;
@@ -318,7 +319,7 @@
     margin-bottom: 28px;
   }
   .phil-title {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 28px;
     font-weight: 400;
     color: var(--dark);
@@ -350,8 +351,8 @@
   .kohde-tag {
     position: absolute; bottom: 0; left: 0; right: 0;
     padding: 40px;
-    background: linear-gradient(to top, rgba(26,25,22,0.8), transparent);
-    font-family: 'Cormorant', serif;
+    background: linear-gradient(to top, rgba(45,41,48,0.8), transparent);
+    font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     color: var(--cream);
     letter-spacing: 0.08em;
@@ -368,7 +369,7 @@
     margin-bottom: 36px;
   }
   .kohde-name {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 50px;
     font-weight: 300;
     line-height: 1.1;
@@ -419,7 +420,7 @@
     margin-bottom: 16px;
   }
   .journal-title {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 26px;
     font-weight: 300;
     line-height: 1.35;
@@ -464,7 +465,7 @@
   }
   .contact-link:hover { color: var(--stone); }
   .contact-link span {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 0.05em;
@@ -480,7 +481,7 @@
     display: flex; justify-content: space-between; align-items: center;
   }
   .footer-logo {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -523,7 +524,7 @@
     margin-bottom: 24px;
   }
   .sisapiiri-title {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: clamp(44px, 5vw, 68px);
     font-weight: 300;
     line-height: 1.15;
@@ -559,7 +560,7 @@
     background: rgba(200,191,176,0.04);
     border: none;
     outline: none;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 15px;
     font-weight: 300;
     color: var(--cream);
@@ -573,7 +574,7 @@
     color: var(--cream);
     border: none;
     cursor: pointer;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.2em;
@@ -602,7 +603,7 @@
     margin-bottom: 20px;
   }
   .sf-title {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 20px;
     font-weight: 400;
     color: var(--cream);
@@ -678,7 +679,7 @@
   }
   .mobile-menu.open { display: flex; }
   .mobile-menu a {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 36px;
     font-weight: 300;
     color: var(--cream);
@@ -767,7 +768,7 @@
     transform-origin: center 30%;
   }
   .tiimi-nimi {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 26px; font-weight: 400;
     color: var(--dark); margin-bottom: 6px;
   }
@@ -783,7 +784,7 @@
   .tarjoa-inner { max-width: 1100px; margin: 0 auto; }
   .tarjoa-inner .section-label { color: var(--stone); }
   .tarjoa-title {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: clamp(38px, 4.5vw, 60px);
     font-weight: 300; line-height: 1.15;
     color: var(--cream); margin-bottom: 24px;
@@ -813,7 +814,7 @@
     padding-top: 3px;
   }
   .kriteeri-title {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 22px; font-weight: 400;
     color: var(--cream); margin-bottom: 6px;
   }
@@ -825,7 +826,7 @@
     padding: 18px 48px;
     background: var(--accent); color: var(--cream);
     border: none; cursor: pointer;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     transition: background 0.3s;
   }
   .tarjoa-nappi:hover { background: #7a6448; }
@@ -865,7 +866,7 @@
   }
   .tarjoa-modaali-sulku:hover { color: var(--stone); }
   .tarjoa-modaali-otsikko {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 32px; font-weight: 300;
     color: var(--cream); margin-bottom: 8px;
   }
@@ -887,7 +888,7 @@
     background: rgba(200,191,176,0.04);
     border: 1px solid rgba(200,191,176,0.15);
     color: var(--cream);
-    font-family: 'Jost', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 16px; font-weight: 300;
     outline: none;
     transition: border-color 0.3s, background 0.3s;
@@ -906,7 +907,7 @@
     width: 100%; padding: 20px;
     background: var(--accent); color: var(--cream);
     border: none; cursor: pointer;
-    font-family: 'Jost', sans-serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase;
     transition: background 0.3s; margin-top: 8px;
   }
@@ -916,7 +917,7 @@
     text-align: center; padding: 40px 0;
   }
   .tarjoa-kiitos-title {
-    font-family: 'Cormorant', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 40px; font-weight: 300; font-style: italic;
     color: var(--cream); margin-bottom: 16px;
   }
@@ -1529,3 +1530,4 @@
 
 </body>
 </html>
+
