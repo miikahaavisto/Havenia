@@ -45,7 +45,7 @@
   footer { background: var(--dark); border-top: 1px solid rgba(200,191,176,0.08); padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; }
   .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(200,191,176,0.25); }
   .footer-copy { font-size: 13px; color: rgba(200,191,176,0.2); letter-spacing: 0.05em; }
-  .article-kuva { display: block; width: 100%; max-width: 640px; height: auto; margin: 0 auto 8px; border-radius: 2px; }
+  .article-kuva { display: block; width: 100%; max-width: 800px; aspect-ratio: 16/10; object-fit: cover; object-position: center; margin: 8px auto 56px; border-radius: 2px; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   @media (max-width: 768px) {
     nav { padding: 22px 24px; }
@@ -113,6 +113,7 @@
 
 </body>
 </html>
+
 
 
 
