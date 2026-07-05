@@ -846,7 +846,7 @@
           Tulos on koti, jossa arkkitehtuuri, remonttiratkaisu ja sisustus muodostavat <strong>yhden täydellisen kokonaisuuden</strong>. Ei kompromisseja. Ei koordinointivaivaa. Ei epävarmuutta.
         </p>
         <div style="display:flex; flex-direction:column; gap:12px; margin-top:8px;">
-          <a href="mailto:info@havenia.fi?subject=Olen%20kiinnostunut%20Havenia%20Signature%20-palvelusta" class="signature-cta">Kysy Havenia Signaturesta</a>
+          <a href="mailto:info@havenia.fi?subject=Olen%20kiinnostunut%20Havenia%20Signature%20-palvelusta" class="signature-cta" onclick="window.haveniaTrack&&haveniaTrack('signature_kysely')">Kysy Havenia Signaturesta</a>
           <span style="font-size:13px; font-style:italic; color:var(--mid); letter-spacing:0.03em;">Tilattavissa erikseen kaupanteon yhteydessä.</span>
         </div>
       </div>
@@ -901,7 +901,7 @@
     <div class="sisapiiri-cta-label">Sisäpiiri</div>
     <h2 class="sisapiiri-cta-title">Sisäpiiriläisille<br><em>ensin.</em></h2>
     <p class="sisapiiri-cta-sub">Havenia-sisäpiiriin kuuluvat saavat mahdollisuuden tutustua kohteeseen henkilökohtaisesti ennen julkista myyntiä — ja etuoikeuden tehdä tarjous rauhassa.</p>
-    <a href="index.html#sisapiiri" class="sisapiiri-cta-btn">Liity sisäpiiriin</a>
+    <a href="index.html#sisapiiri" class="sisapiiri-cta-btn" onclick="window.haveniaTrack&&haveniaTrack('sisapiiri_kiinnostus',{lahde:'Tuulensuu'})">Liity sisäpiiriin</a>
   </div>
 </div>
 
@@ -1022,6 +1022,7 @@
 
     const form = document.getElementById('yhteydenotto-form');
     const data = new FormData(form);
+    if (window.haveniaTrack) haveniaTrack('yhteydenotto', { kohde: 'Tuulensuu', aihe: (data.get('aihe') || '') });
 
     try {
       const res = await fetch('tuulensuu-yhteydenotto.php', { method: 'POST', body: data });

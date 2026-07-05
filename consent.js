@@ -14,6 +14,13 @@
     gtag('config', GA_ID, { anonymize_ip: true });
   }
 
+  // Lähettää GA-tapahtuman vain jos seuranta on hyväksytty
+  window.haveniaTrack = function (name, params) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', name, params || {});
+    }
+  };
+
   function getChoice() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
   }
