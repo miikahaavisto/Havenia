@@ -60,6 +60,8 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition-duration: 0.01ms !important; }
   }
+  .footer-ig { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(200,191,176,0.45); text-decoration: none; transition: color 0.3s; }
+  .footer-ig:hover { color: var(--stone); }
 </style>
 </head>
 <body>
@@ -110,12 +112,15 @@
 
 <footer>
   <div class="footer-logo"><img src="logo-valk-cropped.png" alt="Havenia" style="height:26px;width:auto;opacity:0.4;display:block;"></div>
+  <a href="https://www.instagram.com/havenialiving/" target="_blank" rel="noopener" class="footer-ig" onclick="window.haveniaTrack&&haveniaTrack('instagram_klikkaus')">@havenialiving</a>
   <div class="footer-copy">© 2026 Havenia. Kaikki oikeudet pidätetään.</div>
 </footer>
 
 <script src="consent.js?v=1"></script>
 </body>
 </html>
+
+
 
 
 
