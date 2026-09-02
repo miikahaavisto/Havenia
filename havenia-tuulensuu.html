@@ -87,6 +87,24 @@
     color: var(--stone); border: 1px solid rgba(200,191,176,0.3);
     padding: 8px 18px;
   }
+  .kohde-hero-ctas {
+    display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
+    margin-top: 36px;
+    opacity: 0; animation: fadeUp 1s ease 1.15s forwards;
+  }
+  .hero-cta {
+    font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .hero-cta-primary {
+    padding: 16px 40px; background: var(--accent); color: var(--cream);
+  }
+  .hero-cta-primary:hover { background: #7a6448; }
+  .hero-cta-ghost {
+    color: rgba(200,191,176,0.75);
+    border-bottom: 1px solid rgba(200,191,176,0.35); padding-bottom: 3px;
+  }
+  .hero-cta-ghost:hover { color: var(--cream); border-color: var(--stone); }
 
   /* KARUSELLI */
   .carousel-section {
@@ -585,6 +603,8 @@
     nav { padding: 20px 24px; }
     .kohde-hero { padding: 0 24px 60px; }
     .kohde-hero-sub { font-size: 15px; }
+    .kohde-hero-ctas { gap: 16px; }
+    .hero-cta-primary { width: 100%; text-align: center; }
     .tarina-section { padding: 72px 24px; }
     .uudistus-section { padding: 72px 24px; }
     .uudistus-inner { max-width: 100%; }
@@ -632,6 +652,10 @@
       <div class="badge">6. kerros</div>
       <div class="badge">Nyt myynnissä</div>
       <div class="badge">730 000 €</div>
+    </div>
+    <div class="kohde-hero-ctas">
+      <a href="https://www.etuovi.com/kohde/20912998" target="_blank" rel="noopener" class="hero-cta hero-cta-primary" onclick="window.haveniaTrack&&haveniaTrack('etuovi_ilmoitus',{sijainti:'hero'})">Katso myynti-ilmoitus →</a>
+      <a href="#yhteydenotto" class="hero-cta hero-cta-ghost">Sovi esittely</a>
     </div>
   </div>
 </section>
@@ -906,11 +930,14 @@
 </div>
 
 <!-- YHTEYDENOTTO -->
-<section class="yhteydenotto-section">
+<section class="yhteydenotto-section" id="yhteydenotto">
   <div class="yhteydenotto-inner">
-    <div class="section-label">Yhteydenotto</div>
-    <h2 class="yhteydenotto-title">Kiinnostuitko<br><em>Tuulensuusta?</em></h2>
-    <p class="yhteydenotto-sub">Ota yhteyttä — kerromme lisää kohteesta ja sovimme tutustumiskäynnin.</p>
+    <div class="section-label">Nyt myynnissä</div>
+    <h2 class="yhteydenotto-title">Kohde on<br><em>myynnissä.</em></h2>
+    <p class="yhteydenotto-sub">Tuulensuu on nyt avoimessa myynnissä. Katso koko myynti-ilmoitus ja kuvat Etuovessa — tai jätä yhteystietosi, niin sovitaan henkilökohtainen esittely.</p>
+    <div style="margin-bottom:48px;">
+      <a href="https://www.etuovi.com/kohde/20912998" target="_blank" rel="noopener" class="hero-cta hero-cta-primary" style="display:inline-block;" onclick="window.haveniaTrack&&haveniaTrack('etuovi_ilmoitus',{sijainti:'yhteydenotto'})">Katso myynti-ilmoitus Etuovessa →</a>
+    </div>
 
     <form id="yhteydenotto-form" onsubmit="lahetaYhteydenotto(event)" novalidate>
       <div class="form-row-2">
