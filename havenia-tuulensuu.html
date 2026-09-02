@@ -158,6 +158,25 @@
   }
   .carousel-dot.active { background: var(--stone); transform: scale(1.4); }
 
+  /* KUVAKOLLAASI */
+  .galleria-section { background: var(--warm-white); padding: 96px 60px; }
+  .galleria-inner { max-width: 1200px; margin: 0 auto; }
+  .galleria-inner .section-label { color: var(--accent); text-align: center; }
+  .galleria-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 54px); font-weight: 300;
+    color: var(--dark); text-align: center; margin-bottom: 56px;
+  }
+  .galleria-title em { font-style: italic; }
+  .galleria { column-count: 3; column-gap: 16px; }
+  .galleria-kuva {
+    width: 100%; display: block; margin: 0 0 16px;
+    border-radius: 2px; break-inside: avoid;
+  }
+  .galleria-kuva.pohja { border: 1px solid var(--line); background: #fff; }
+  @media (max-width: 1024px) { .galleria { column-count: 2; } .galleria-section { padding: 80px 40px; } }
+  @media (max-width: 600px) { .galleria { column-count: 1; } .galleria-section { padding: 64px 24px; } }
+
   /* TARINA */
   .tarina-section {
     padding: 120px 60px;
@@ -685,34 +704,33 @@
   </div>
 </section>
 
-<!-- KARUSELLI -->
-<div class="carousel-section" aria-label="Kuvakaruselli kohteesta">
-  <div class="carousel-wrapper">
-    <div class="carousel" id="carousel">
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide" style="background-image:url('ts-01.jpg');" role="img" aria-label="Olohuone"></div>
-        <div class="carousel-slide" style="background-image:url('ts-02.jpg');" role="img" aria-label="Olohuone ja pylväät"></div>
-        <div class="carousel-slide" style="background-image:url('ts-03.jpg');" role="img" aria-label="Keittiö ja ruokailutila"></div>
-        <div class="carousel-slide" style="background-image:url('ts-04.jpg');" role="img" aria-label="Keittiön messinkisaareke"></div>
-        <div class="carousel-slide" style="background-image:url('ts-05.jpg');" role="img" aria-label="Keittiön saareke ja marmori"></div>
-        <div class="carousel-slide" style="background-image:url('ts-06.jpg');" role="img" aria-label="Keittiön kaarisyvennys"></div>
-        <div class="carousel-slide" style="background-image:url('ts-07.jpg');" role="img" aria-label="Keittiön kaapistot"></div>
-        <div class="carousel-slide" style="background-image:url('ts-08.jpg');" role="img" aria-label="Sauna"></div>
-        <div class="carousel-slide" style="background-image:url('ts-09.jpg');" role="img" aria-label="Kylpyhuone, suihku ja kaariovi"></div>
-        <div class="carousel-slide" style="background-image:url('ts-10.jpg');" role="img" aria-label="Kylpyhuone ja amme"></div>
-        <div class="carousel-slide" style="background-image:url('ts-11.jpg');" role="img" aria-label="Kylpyhuoneen allas"></div>
-        <div class="carousel-slide" style="background-image:url('ts-12.jpg');" role="img" aria-label="Erillinen wc"></div>
-        <div class="carousel-slide" style="background-image:url('ts-13.jpg');" role="img" aria-label="Makuuhuone"></div>
-        <div class="carousel-slide" style="background-image:url('ts-14.jpg');" role="img" aria-label="Makuuhuone ja lasiseinä"></div>
-        <div class="carousel-slide" style="background-image:url('ts-15.jpg');" role="img" aria-label="Työhuone"></div>
-        <div class="carousel-slide" style="background-image:url('ts-16.jpg');" role="img" aria-label="Kodinhoitohuone"></div>
-      </div>
+<!-- KUVAKOLLAASI -->
+<section class="galleria-section" aria-label="Kuvat kohteesta">
+  <div class="galleria-inner">
+    <div class="section-label">Kuvat</div>
+    <h2 class="galleria-title">Katso <em>koko koti.</em></h2>
+    <div class="galleria">
+      <img class="galleria-kuva" src="ts-03.jpg" loading="lazy" alt="Keittiö ja ruokailutila">
+      <img class="galleria-kuva" src="ts-04.jpg" loading="lazy" alt="Keittiön messinkisaareke">
+      <img class="galleria-kuva" src="ts-05.jpg" loading="lazy" alt="Keittiön saareke ja marmori">
+      <img class="galleria-kuva" src="ts-06.jpg" loading="lazy" alt="Keittiön kaarisyvennys">
+      <img class="galleria-kuva" src="ts-07.jpg" loading="lazy" alt="Keittiön kaapistot">
+      <img class="galleria-kuva" src="ts-01.jpg" loading="lazy" alt="Olohuone">
+      <img class="galleria-kuva" src="ts-02.jpg" loading="lazy" alt="Olohuone ja pylväät">
+      <img class="galleria-kuva" src="ts-09.jpg" loading="lazy" alt="Kylpyhuone, suihku ja kaariovi">
+      <img class="galleria-kuva" src="ts-10.jpg" loading="lazy" alt="Kylpyhuone ja amme">
+      <img class="galleria-kuva" src="ts-11.jpg" loading="lazy" alt="Kylpyhuoneen allas">
+      <img class="galleria-kuva" src="ts-12.jpg" loading="lazy" alt="Erillinen wc">
+      <img class="galleria-kuva" src="ts-08.jpg" loading="lazy" alt="Sauna">
+      <img class="galleria-kuva" src="ts-13.jpg" loading="lazy" alt="Makuuhuone">
+      <img class="galleria-kuva" src="ts-14.jpg" loading="lazy" alt="Makuuhuone ja lasiseinä">
+      <img class="galleria-kuva" src="ts-15.jpg" loading="lazy" alt="Työhuone">
+      <img class="galleria-kuva" src="ts-16.jpg" loading="lazy" alt="Kodinhoitohuone">
+      <img class="galleria-kuva pohja" src="tuulensuu-pohjakuva.jpg" loading="lazy" alt="Havenia Tuulensuu — pohjakuva">
     </div>
-    <button class="carousel-btn carousel-prev" aria-label="Edellinen kuva" onclick="karuselliSiirry(-1)">&#8592;</button>
-    <button class="carousel-btn carousel-next" aria-label="Seuraava kuva" onclick="karuselliSiirry(1)">&#8594;</button>
-    <div class="carousel-dots" id="carouselDots"></div>
+    <p style="text-align:center; font-size:13px; color:var(--stone); font-style:italic; margin-top:28px;">Pohjakuva on suuntaa antava.</p>
   </div>
-</div>
+</section>
 
 <!-- TARINA -->
 <section class="tarina-section">
@@ -883,19 +901,6 @@
   </div>
 </section>
 
-<!-- POHJAKUVA -->
-<section class="pohja-section">
-  <div class="pohja-inner">
-    <div class="section-label">Pohjakuva</div>
-    <h2 class="pohja-title">Tilat<br><em>yhdellä silmäyksellä.</em></h2>
-    <a href="tuulensuu-pohjakuva.pdf" target="_blank" rel="noopener" onclick="window.haveniaTrack&&haveniaTrack('pohjakuva_avaus')">
-      <img src="tuulensuu-pohjakuva.jpg" alt="Havenia Tuulensuu — pohjakuva" class="pohja-kuva">
-    </a>
-    <a href="tuulensuu-pohjakuva.pdf" download class="pohja-lataa" onclick="window.haveniaTrack&&haveniaTrack('pohjakuva_lataus')">Lataa pohjakuva (PDF)</a>
-    <p style="font-size:13px; color:var(--stone); font-style:italic; margin-top:20px;">Pohjakuva on suuntaa antava.</p>
-  </div>
-</section>
-
 <!-- HAVENIA SIGNATURE -->
 <section class="signature-section">
   <div class="signature-inner">
@@ -964,24 +969,14 @@
   </div>
 </section>
 
-<!-- SISÄPIIRI CTA -->
-<div class="sisapiiri-cta">
-  <div class="sisapiiri-cta-inner">
-    <div class="sisapiiri-cta-label">Sisäpiiri</div>
-    <h2 class="sisapiiri-cta-title">Sisäpiiriläisille<br><em>ensin.</em></h2>
-    <p class="sisapiiri-cta-sub">Havenia-sisäpiiriin kuuluvat saavat mahdollisuuden tutustua kohteeseen henkilökohtaisesti ennen julkista myyntiä — ja etuoikeuden tehdä tarjous rauhassa.</p>
-    <a href="index.html#sisapiiri" class="sisapiiri-cta-btn" onclick="window.haveniaTrack&&haveniaTrack('sisapiiri_kiinnostus',{lahde:'Tuulensuu'})">Liity sisäpiiriin</a>
-  </div>
-</div>
-
 <!-- YHTEYDENOTTO -->
 <section class="yhteydenotto-section" id="yhteydenotto">
   <div class="yhteydenotto-inner">
-    <div class="section-label">Nyt myynnissä</div>
-    <h2 class="yhteydenotto-title">Kohde on<br><em>myynnissä.</em></h2>
-    <p class="yhteydenotto-sub">Tuulensuu on nyt avoimessa myynnissä. Katso koko myynti-ilmoitus ja kuvat Etuovessa — tai jätä yhteystietosi, niin sovitaan henkilökohtainen esittely.</p>
+    <div class="section-label">Yhteydenotto</div>
+    <h2 class="yhteydenotto-title">Kysy lisää<br><em>Tuulensuusta.</em></h2>
+    <p class="yhteydenotto-sub">Ostotarjoukset ja viralliset asiakirjat hoidetaan Etuoven ilmoituksen kautta. Jos jokin jäi mietityttämään tai haluat sopia esittelyn, kysy meiltä — vastaamme henkilökohtaisesti.</p>
     <div style="margin-bottom:48px;">
-      <a href="https://www.etuovi.com/kohde/20912998" target="_blank" rel="noopener" class="hero-cta hero-cta-primary" style="display:inline-block;" onclick="window.haveniaTrack&&haveniaTrack('etuovi_ilmoitus',{sijainti:'yhteydenotto'})">Katso myynti-ilmoitus Etuovessa →</a>
+      <a href="https://www.etuovi.com/kohde/20912998" target="_blank" rel="noopener" class="hero-cta hero-cta-primary" style="display:inline-block;" onclick="window.haveniaTrack&&haveniaTrack('etuovi_ilmoitus',{sijainti:'yhteydenotto'})">Osto ja tarjoukset — Etuovi →</a>
     </div>
 
     <form id="yhteydenotto-form" onsubmit="lahetaYhteydenotto(event)" novalidate>
@@ -1000,19 +995,19 @@
         <input type="email" id="yt-email" name="email" placeholder="sinun@sahkoposti.fi" autocomplete="email" required>
       </div>
       <div class="form-field">
-        <label for="yt-aihe">Minua kiinnostaa</label>
+        <label for="yt-aihe">Aihe</label>
         <select id="yt-aihe" name="aihe" required>
           <option value="" disabled selected>Valitse aihe</option>
           <option value="Haluan lisätietoja kohteesta">Haluan lisätietoja kohteesta</option>
-          <option value="Haluan tutustua kohteeseen">Haluan tutustua kohteeseen</option>
-          <option value="Muu asia">Muu asia</option>
+          <option value="Haluan sopia esittelyn">Haluan sopia esittelyn</option>
+          <option value="Muu kysymys">Muu kysymys</option>
         </select>
       </div>
       <div class="form-field">
-        <label for="yt-viesti">Viesti</label>
-        <textarea id="yt-viesti" name="viesti" placeholder="Kerro vapaasti kysymyksistäsi tai toiveistasi..."></textarea>
+        <label for="yt-viesti">Kysymys</label>
+        <textarea id="yt-viesti" name="viesti" placeholder="Mitä haluaisit tietää kohteesta?"></textarea>
       </div>
-      <button type="submit" class="form-submit" id="form-submit-btn">Lähetä viesti</button>
+      <button type="submit" class="form-submit" id="form-submit-btn">Lähetä kysymys</button>
     </form>
 
     <div class="form-kiitos" id="form-kiitos">
@@ -1029,62 +1024,6 @@
 </footer>
 
 <script>
-  // Karuselli — 3-up portrait gallery
-  let nykyinen = 0;
-  const slides = document.querySelectorAll('.carousel-slide');
-  const track = document.getElementById('carouselTrack');
-  const dotsContainer = document.getElementById('carouselDots');
-  const slideCount = slides.length;
-
-  // Luo dots
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', `Kuva ${i + 1}`);
-    dot.onclick = () => karuselliMene(i);
-    dotsContainer.appendChild(dot);
-  });
-
-  function karuselliPaivita() {
-    // Laske slide-leveys + gap
-    const slideEl = slides[0];
-    const slideW = slideEl.offsetWidth;
-    const gap = 12;
-    const offset = nykyinen * (slideW + gap);
-    track.style.transform = `translateX(-${offset}px)`;
-
-    // Päivitä aktiivinen slide
-    slides.forEach((s, i) => s.classList.toggle('active-slide', i === nykyinen));
-
-    // Päivitä dots
-    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === nykyinen);
-    });
-  }
-
-  function karuselliSiirry(suunta) {
-    nykyinen = (nykyinen + suunta + slideCount) % slideCount;
-    karuselliPaivita();
-  }
-  function karuselliMene(i) {
-    nykyinen = i;
-    karuselliPaivita();
-  }
-
-  // Swipe-tuki mobiilille
-  let touchX = 0;
-  track.addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive: true});
-  track.addEventListener('touchend', e => {
-    const diff = touchX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) karuselliSiirry(diff > 0 ? 1 : -1);
-  }, {passive: true});
-
-  // Alustus
-  karuselliPaivita();
-
-  // Auto-advance
-  setInterval(() => karuselliSiirry(1), 5000);
-
   // Yhteydenotto-lomake
   async function lahetaYhteydenotto(e) {
     e.preventDefault();
