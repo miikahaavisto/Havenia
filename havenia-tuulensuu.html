@@ -176,6 +176,17 @@
   }
   .galleria-kuva:hover { opacity: 0.88; }
   .galleria-kuva.pohja { border: 1px solid var(--line); background: #fff; }
+  .galleria-kuvaaja {
+    text-align: center; margin-top: 28px;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--stone);
+  }
+  .galleria-kuvaaja a {
+    color: var(--mid); text-decoration: none;
+    border-bottom: 1px solid var(--line); padding-bottom: 1px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .galleria-kuvaaja a:hover { color: var(--accent); border-color: var(--accent); }
   @media (max-width: 1024px) { .galleria { column-count: 2; } .galleria-section { padding: 80px 40px; } }
   @media (max-width: 600px) { .galleria { column-count: 1; } .galleria-section { padding: 64px 24px; } }
 
@@ -773,6 +784,7 @@
       <img class="galleria-kuva" src="ts-16.jpg" loading="lazy" alt="Kodinhoitohuone">
       <img class="galleria-kuva pohja" src="tuulensuu-pohjakuva.jpg" loading="lazy" alt="Havenia Tuulensuu — pohjakuva">
     </div>
+    <p class="galleria-kuvaaja">Kuvat <a href="https://www.instagram.com/sannistark/" target="_blank" rel="noopener">@sannistark</a></p>
   </div>
 </section>
 
