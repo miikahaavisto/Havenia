@@ -297,6 +297,31 @@
     color: rgba(200,191,176,0.6);
   }
 
+  /* POHJAKUVA */
+  .pohja-section { background: var(--warm-white); padding: 40px 60px 120px; }
+  .pohja-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+  .pohja-inner .section-label { color: var(--accent); }
+  .pohja-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 54px); font-weight: 300;
+    color: var(--dark); margin-bottom: 40px;
+  }
+  .pohja-title em { font-style: italic; }
+  .pohja-kuva {
+    display: block; width: 100%; max-width: 900px; height: auto;
+    margin: 0 auto 28px; border: 1px solid var(--line); background: #fff;
+    transition: opacity 0.3s;
+  }
+  .pohja-kuva:hover { opacity: 0.9; }
+  .pohja-lataa {
+    display: inline-block; font-size: 13px; letter-spacing: 0.22em;
+    text-transform: uppercase; padding: 16px 40px;
+    background: var(--charcoal); color: var(--cream);
+    text-decoration: none; transition: background 0.3s;
+  }
+  .pohja-lataa:hover { background: var(--accent); }
+  @media (max-width: 768px) { .pohja-section { padding: 24px 24px 72px; } }
+
   /* HAVENIA SIGNATURE */
   .signature-section {
     background: var(--cream);
@@ -665,15 +690,22 @@
   <div class="carousel-wrapper">
     <div class="carousel" id="carousel">
       <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8769.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 1"></div>
-        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8776.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 2"></div>
-        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8778.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 3"></div>
-        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8785.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 4"></div>
-        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8788.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 5"></div>
-        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8829.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 6"></div>
-        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8833.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 7"></div>
-        <div class="carousel-slide" style="background-image:url('Tuulensuu/IMG_8990.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 8"></div>
-        <div class="carousel-slide" style="background-image:url('Tuulensuu/kohde.jpg');" role="img" aria-label="Havenia Tuulensuu — kuva 9"></div>
+        <div class="carousel-slide" style="background-image:url('ts-01.jpg');" role="img" aria-label="Olohuone"></div>
+        <div class="carousel-slide" style="background-image:url('ts-02.jpg');" role="img" aria-label="Olohuone ja pylväät"></div>
+        <div class="carousel-slide" style="background-image:url('ts-03.jpg');" role="img" aria-label="Keittiö ja ruokailutila"></div>
+        <div class="carousel-slide" style="background-image:url('ts-04.jpg');" role="img" aria-label="Keittiön messinkisaareke"></div>
+        <div class="carousel-slide" style="background-image:url('ts-05.jpg');" role="img" aria-label="Keittiön saareke ja marmori"></div>
+        <div class="carousel-slide" style="background-image:url('ts-06.jpg');" role="img" aria-label="Keittiön kaarisyvennys"></div>
+        <div class="carousel-slide" style="background-image:url('ts-07.jpg');" role="img" aria-label="Keittiön kaapistot"></div>
+        <div class="carousel-slide" style="background-image:url('ts-08.jpg');" role="img" aria-label="Sauna"></div>
+        <div class="carousel-slide" style="background-image:url('ts-09.jpg');" role="img" aria-label="Kylpyhuone, suihku ja kaariovi"></div>
+        <div class="carousel-slide" style="background-image:url('ts-10.jpg');" role="img" aria-label="Kylpyhuone ja amme"></div>
+        <div class="carousel-slide" style="background-image:url('ts-11.jpg');" role="img" aria-label="Kylpyhuoneen allas"></div>
+        <div class="carousel-slide" style="background-image:url('ts-12.jpg');" role="img" aria-label="Erillinen wc"></div>
+        <div class="carousel-slide" style="background-image:url('ts-13.jpg');" role="img" aria-label="Makuuhuone"></div>
+        <div class="carousel-slide" style="background-image:url('ts-14.jpg');" role="img" aria-label="Makuuhuone ja lasiseinä"></div>
+        <div class="carousel-slide" style="background-image:url('ts-15.jpg');" role="img" aria-label="Työhuone"></div>
+        <div class="carousel-slide" style="background-image:url('ts-16.jpg');" role="img" aria-label="Kodinhoitohuone"></div>
       </div>
     </div>
     <button class="carousel-btn carousel-prev" aria-label="Edellinen kuva" onclick="karuselliSiirry(-1)">&#8592;</button>
@@ -848,6 +880,19 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- POHJAKUVA -->
+<section class="pohja-section">
+  <div class="pohja-inner">
+    <div class="section-label">Pohjakuva</div>
+    <h2 class="pohja-title">Tilat<br><em>yhdellä silmäyksellä.</em></h2>
+    <a href="tuulensuu-pohjakuva.pdf" target="_blank" rel="noopener" onclick="window.haveniaTrack&&haveniaTrack('pohjakuva_avaus')">
+      <img src="tuulensuu-pohjakuva.jpg" alt="Havenia Tuulensuu — pohjakuva" class="pohja-kuva">
+    </a>
+    <a href="tuulensuu-pohjakuva.pdf" download class="pohja-lataa" onclick="window.haveniaTrack&&haveniaTrack('pohjakuva_lataus')">Lataa pohjakuva (PDF)</a>
+    <p style="font-size:13px; color:var(--stone); font-style:italic; margin-top:20px;">Pohjakuva on suuntaa antava.</p>
   </div>
 </section>
 
