@@ -3,3 +3,4 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/haveniaf/public_html/
     - /bin/cp havenia.html $DEPLOYPATH/index.html
+    - /bin/cp consent.js havenia-tuulensuu.html blogi-estetiikka.html blogi-materiaalit.html blogi-tilasuunnittelu.html $DEPLOYPATH
